@@ -1,0 +1,67 @@
+@media (max-width: 600px) {
+
+    .container {
+        margin-top: 72px;
+        width: 100%;
+        padding: 4.5vh 10vw 6.28vh;
+        border-radius: 24px 24px 0px 0px;
+        background: $grey-light-bg;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px 0 8px 48px;
+    }
+
+    .input_value_first-name,
+    .input_value_last-name {
+        background: url("../img/user.png") no-repeat 16px 6px;
+        background-color: $white;
+    }
+
+    .input_value_email {
+        background: url("../img/email.png") no-repeat 16px 8px;
+        background-color: $white;
+    }
+
+    .input_value_password {
+        position: relative;
+        background: url("../img/lock.png") no-repeat 17px 6px;
+        background-color: $white;
+    }
+
+    .input_value_password-confirm {
+        background: url("../img/check.png") no-repeat 16px 10px;
+        background-color: $white;
+    }
+
+    .form-container_container-password {
+        position: relative;
+
+        button {
+            position: absolute;
+            top: 7px;
+            right: 10px;
+        }
+    }
+
+    .form-button {
+        padding: 14.5px 48px 14.5px 16px;
+    }
+
+    .footer {
+        display: block;
+    }
+
+    .text__restore-password {
+            margin: 24px 0;
+            width: 100%;
+    }
+
+}
+
+@media (max-width: 320px) {
+    body {
+        background: url("../img/bg-small.png") no-repeat;
+    }
+}
