@@ -300,6 +300,7 @@ body {
 }
 
 .container {
+  height: 100%;
   padding: 15vh 96px 7.81vh;
   background: #F9FAFF;
 }
@@ -398,11 +399,11 @@ input:focus {
   font-size: calc(15px + (17 - 15) * ((100vw - 320px) / (1920 - 320)));
 }
 
-span {
+.form-button span {
   position: relative;
 }
 
-span:after {
+.form-button span:after {
   content: url("../img/angle-right-b.png");
   position: absolute;
   top: 0;

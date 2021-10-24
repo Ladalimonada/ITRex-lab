@@ -19,6 +19,7 @@ body {
 }
 
 .container {
+    height: 100%;
     padding: 15vh 96px 7.81vh;
     background: $grey-light-bg;
 }
@@ -95,17 +96,15 @@ input:focus {
     border: none;
     border-radius: 8px;
     font-size: calc(15px + (17 - 15) * ((100vw - 320px) / (1920 - 320)));
-}
-
-span {
-    position: relative;
-}
-
-span:after {
-    content: url('../img/angle-right-b.png');
-    position: absolute;
-    top: 0;
-    right: -30px;
+    span {
+        position: relative;
+    }
+    span:after {
+        content: url('../img/angle-right-b.png');
+        position: absolute;
+        top: 0;
+        right: -30px;
+    }
 }
 
 button {
