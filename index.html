@@ -1,63 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./source/scss/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script defer type="text/javascript" src="./script.js"></script>
     <title>Lesson 1</title>
 </head>
-
 <body>
-    <div class="container container__sign-up">
-        <h2 class="title title__sign-up">Sign Up</h2>
-        <form class="form-sign-up">
-            <input class="input_value_first-name" type="text" name="firstName" placeholder="First Name" required>
-            <input class="input_value_last-name" type="text" name="lastName" placeholder="Last Name" required>
-            <input class="input_value_email" type="text" name="email" placeholder="Email" required>
-            <div class="form-container_container-password"><input class="input_value_password" type="text"
-                    name="password" placeholder="Password" required><button><img
-                        src="./source/img/eye-slash.png"></button></div>
-            <div class="form-container_container-password"><input class="input_value_password-confirm" type="text"
-                    name="passwordConfirm" placeholder="Confirm Password" required><button><img
-                        src="./source/img/eye-slash.png"></button></div>
-        </form>
-        <div><button class="form-button"><span>Sign Up</span></button></div>
-        <div class="footer footer-sign-up">
-            <p>Already have an account?</p>
-            <button class="button-sign-in">Sign in</button>
-        </div>
-    </div>
-    <div class="container container__sign-in">
-        <h2 class="title title__sign-in">Sign In</h2>
-        <form class="form-sign-up">
-            <input class="input_value_email" type="text" name="email" placeholder="Email" required>
-            <div class="form-container_container-password"><input class="input_value_password" type="text"
-                    name="password" placeholder="Password" required><button><img
-                        src="./source/img/eye-slash.png"></button></div>
-        </form>
-        <div><button class="form-button form-button-sign-in"><span>Sign In</span></button></div>
-        <button class="form-button-back button-forgot"><span>Forgot Password?</span></button>
-        <div class="footer footer-sign-in">
-            <p>Dont have an account?</p>
-            <button class="button-sign-up">Sign up</button>
-        </div>
-    </div>
-    <div class="container container__restore-password">
-        <h2 class="title title__restore-password back-restore">Restore Password</h2>
-        <p class="text__restore-password">Please use your email address, and we’ll send you the link to reset your
-            password</p>
-        <form class="form-restore">
-            <input class="input_value_email" type="text" name="email" placeholder="Email" required>
-        </form>
-        <div><button class="form-button form-button-sign-in button-reset"><span>Sent Reset Link</span></button></div>
-    </div>
-    <div class="container container__restored-password">
-        <h2 class="title title__restore-password back-restored">Restore Password</h2>
-        <p class="text__restore-password">An email has been sent to <span>example@exam.com.</span> Check your inbox, and
-            click the reset link provided.</p>
-    </div>
+    <div id="app"></div>
+    <script src="./js/route.js"></script>
+    <script src="./js/router.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>

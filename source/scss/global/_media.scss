@@ -1,5 +1,4 @@
 @media (max-width: 600px) {
-
     .container {
         margin-top: 72px;
         width: 100%;
@@ -13,31 +12,30 @@
         padding: 8px 0 8px 48px;
     }
 
-    .input_value_first-name,
-    .input_value_last-name {
+    .input_first-name,
+    .input_last-name {
         background: url("../img/user.png") no-repeat 16px 6px;
         background-color: $white;
     }
 
-    .input_value_email {
+    .input_email {
         background: url("../img/email.png") no-repeat 16px 8px;
         background-color: $white;
     }
 
-    .input_value_password {
+    .input_password {
         position: relative;
         background: url("../img/lock.png") no-repeat 17px 6px;
         background-color: $white;
     }
 
-    .input_value_password-confirm {
+    .input_password-confirm {
         background: url("../img/check.png") no-repeat 16px 10px;
         background-color: $white;
     }
 
-    .form-container_container-password {
+    .form-container {
         position: relative;
-
         button {
             position: absolute;
             top: 7px;

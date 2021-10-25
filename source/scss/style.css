@@ -163,6 +163,10 @@ a {
   background-color: transparent;
 }
 
+a {
+  text-decoration-skip-ink: auto;
+}
+
 b,
 strong {
   font-weight: bolder;
@@ -290,13 +294,20 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   background: url("../img/bg.png") no-repeat;
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
+}
+
+#app {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .container {
@@ -356,33 +367,33 @@ input:focus {
   border: 1px solid #7297FF;
 }
 
-.input_value_first-name,
-.input_value_last-name {
+.input_first-name,
+.input_last-name {
   background: url("../img/user.png") no-repeat 26px 14px;
   background-color: #ffffff;
 }
 
-.input_value_email {
+.input_email {
   background: url("../img/email.png") no-repeat 26px 15px;
   background-color: #ffffff;
 }
 
-.input_value_password {
+.input_password {
   position: relative;
   background: url("../img/lock.png") no-repeat 28px 14px;
   background-color: #ffffff;
 }
 
-.input_value_password-confirm {
+.input_password-confirm {
   background: url("../img/check.png") no-repeat 29px 16px;
   background-color: #ffffff;
 }
 
-.form-container_container-password {
+.form-container {
   position: relative;
 }
 
-.form-container_container-password button {
+.form-container button {
   position: absolute;
   top: 15px;
   right: 20px;
@@ -414,6 +425,10 @@ button {
   background: inherit;
 }
 
+a {
+  color: #7297FF;
+}
+
 .footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -430,12 +445,6 @@ p {
   font-weight: 600;
   color: #7297FF;
   text-decoration: underline;
-}
-
-.container__sign-in,
-.container__restore-password,
-.container__restored-password {
-  display: none;
 }
 
 .container__sign-in,
@@ -470,15 +479,17 @@ p {
 }
 
 .title__restore-password {
-  margin-left: 40px;
-  position: relative;
+  margin-left: 16px;
 }
 
-.title__restore-password:before {
-  content: url("../img/angle-left-b.png");
-  position: absolute;
-  left: -40px;
-  cursor: pointer;
+.title-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.button-sign-up, .button-sign-in {
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
@@ -493,28 +504,28 @@ p {
     width: 100%;
     padding: 8px 0 8px 48px;
   }
-  .input_value_first-name,
-  .input_value_last-name {
+  .input_first-name,
+  .input_last-name {
     background: url("../img/user.png") no-repeat 16px 6px;
     background-color: #ffffff;
   }
-  .input_value_email {
+  .input_email {
     background: url("../img/email.png") no-repeat 16px 8px;
     background-color: #ffffff;
   }
-  .input_value_password {
+  .input_password {
     position: relative;
     background: url("../img/lock.png") no-repeat 17px 6px;
     background-color: #ffffff;
   }
-  .input_value_password-confirm {
+  .input_password-confirm {
     background: url("../img/check.png") no-repeat 16px 10px;
     background-color: #ffffff;
   }
-  .form-container_container-password {
+  .form-container {
     position: relative;
   }
-  .form-container_container-password button {
+  .form-container button {
     position: absolute;
     top: 7px;
     right: 10px;

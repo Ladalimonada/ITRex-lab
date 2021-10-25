@@ -160,6 +160,10 @@ a {
   background-color: transparent;
 }
 
+a{
+  text-decoration-skip-ink: auto;
+}
+
 b,
 strong {
   font-weight: bolder;
