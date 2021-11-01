@@ -8,26 +8,30 @@ const authModule = new AuthController(null, new AuthLayout());
 const patientsModule = new PatientsController(new Model(), new PatientsLayout());
 
 const routes = {
-    '#patients': {
+    '/patients': {
         page: patientsModule,
     },
-    '#sign-in': {
+    '/sign-in': {
         page: authModule,
     },
-    '#sign-up': {
+    '/sign-up': {
         page: authModule,
     },
-    '#restore-password': {
+    '/restore-password': {
         page: authModule,
     },
-    '#restored-password': {
+    '/restored-password': {
         page: authModule,
     },
 };
 
 const router = () => {
-    const URLHash = window.location.hash;
-    let rout = routes[URLHash];
+    const root = document.getElementById('root');
+    const URL = window.location.hash.substring(1);
+    let rout = routes[`/${URL}`];
+    if(!rout) {
+        rout = routes['/sign-in'];
+    }
     root.innerHTML = rout.page.displayPage();
     rout.page.onRender();
 }

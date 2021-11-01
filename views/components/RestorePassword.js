@@ -1,4 +1,4 @@
-import { validateForm } from "../../../utils/validation.js";
+import { validateForm } from "../../utils/validation.js";
 
 export default class RestorePassword {
     validate() {

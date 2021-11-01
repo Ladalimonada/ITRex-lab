@@ -1,5 +1,5 @@
-import { validateForm } from "../../../utils/validation.js";
-import { togglePasswordVisibility } from "../../../utils/passwordVisibility.js"
+import { validateForm } from "../../utils/validation.js";
+import { togglePasswordVisibility } from "../../utils/passwordVisibility.js"
 
 export default class SignIn {
     validate() {
