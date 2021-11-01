@@ -1,5 +1,5 @@
 import { validateForm } from "../../../utils/validation.js";
-import { visibilityPassword } from "../../../utils/visibilityPassword.js"
+import { togglePasswordVisibility } from "../../../utils/passwordVisibility.js"
 
 export default class SignUp {
     validate() {
@@ -11,7 +11,7 @@ export default class SignUp {
     }
     togglePasswordVisibility() {
         const buttons = [...document.getElementsByClassName('show-hide-pass')];
-        buttons.forEach(button => button.addEventListener('click', visibilityPassword));
+        buttons.forEach(button => button.addEventListener('click', togglePasswordVisibility));
     }
    getHtml() {
     return `

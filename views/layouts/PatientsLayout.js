@@ -1,10 +1,7 @@
 import { Patient } from "../components/Patient.js"
 
-
-
-export class PatientsPage {
+export default class PatientsLayout {
     displayPatients (patients){
-        // const PatientComponent = new Patient ();
         return patients.map((patient) => {
             const PatientComponent = new Patient(patient);
              return PatientComponent.displayPatient()

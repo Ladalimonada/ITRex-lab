@@ -1,36 +1,34 @@
-import Controller from './controllers/Controller.js';
+import PatientsController from './controllers/patientsController.js';
 import Model from './models/Model.js';
 import AuthLayout from './views/layouts/AuthLayout.js';
-import { PatientsPage } from './views/layouts/Patients.js';
+import PatientsLayout from './views/layouts/PatientsLayout.js';
 import AuthController from './controllers/AuthController.js';
 
 const authModule = new AuthController(null, new AuthLayout());
-const patientsModule = new Controller(new Model(), new PatientsPage());
+const patientsModule = new PatientsController(new Model(), new PatientsLayout());
 
 const routes = {
-    '/patients': {
+    '#patients': {
         page: patientsModule,
     },
-    '/sign-in': {
+    '#sign-in': {
         page: authModule,
     },
-    '/sign-up': {
+    '#sign-up': {
         page: authModule,
     },
-    '/restore-password': {
+    '#restore-password': {
         page: authModule,
     },
-    '/restored-password': {
+    '#restored-password': {
         page: authModule,
     },
 };
 
 const router = () => {
-    const root = document.getElementById('root');
-    const URL = window.location.hash.substring(1);
-    const rout = routes[`/${URL}`];
+    const URLHash = window.location.hash;
+    let rout = routes[URLHash];
     root.innerHTML = rout.page.displayPage();
-
     rout.page.onRender();
 }
 

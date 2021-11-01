@@ -4,8 +4,8 @@ export default class AuthController {
         this.view = view
     }
     displayPage () {
-        const URL = window.location.hash.substring(1);
-        return this.view.getHtml(URL);
+        const path = window.location.hash.substring(1);
+        return this.view.getHtml(path);
       }
 
     onRender() {

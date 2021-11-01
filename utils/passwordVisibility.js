@@ -1,4 +1,4 @@
-export const visibilityPassword = (event) => {
+export const togglePasswordVisibility = (event) => {
     const input = event.target.parentElement.previousElementSibling;
     if (input.type === 'password') {
         input.type = 'text';
