@@ -9,9 +9,11 @@ export const validateInput = (el, regex) => {
         }
     }
     el.onfocus = function () {
+        console.log('gi');
         if (el.classList.contains('input-error')) {
             el.classList.remove('input-error');
-            el.closest("p").style = "display: none"
+            const errorBlock = document.getElementById(`${el.name}-error`);
+            errorBlock.style = "display: none";
         }
     }
 }
