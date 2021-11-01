@@ -61,6 +61,29 @@
 
 }
 
+@media (max-width: 600px) {
+    .wrapper-patients {
+        padding: 0;
+    }
+    .header {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 450px) {
+    .container-patients {
+        padding: 20px;
+    }
+
+    .doctor-name{
+        display: none;
+    }
+
+    .patient-element {
+        margin-right: 0;
+    }
+}
+
 @media (max-width: 320px) {
     .wrapper {
         background: url("../img/bg-small.png") no-repeat;

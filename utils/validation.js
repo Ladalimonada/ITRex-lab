@@ -9,7 +9,6 @@ export const validateInput = (el, regex) => {
         }
     }
     el.onfocus = function () {
-        console.log('gi');
         if (el.classList.contains('input-error')) {
             el.classList.remove('input-error');
             const errorBlock = document.getElementById(`${el.name}-error`);
