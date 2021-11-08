@@ -1,0 +1,1 @@
+export { StyledContainer } from './AuthContainer';
