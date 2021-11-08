@@ -13,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="signup" element={<SignUp />} />
+        <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="restorepass" element={<RestorePass />} />
         <Route path="passwordrestored" element={<RestoredPass />} />
