@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Field, Formik, ErrorMessage } from 'formik';
 import {
   AuthButton,
@@ -9,17 +9,8 @@ import {
 import imgEmail from '../../../img/email.png';
 import imgLock from '../../../img/lock.png';
 import { validationsScheme } from '../../validationScheme';
-import { ToggleVisibilityWrapper } from '../index';
-import imgEye from '../../../img/eye.png';
-import imgEyeSlash from '../../../img/eye-slash.png';
 
 export function SignInForm() {
-  const [passVisibility, setPassVisibility] = useState(false);
-
-  const changePassVisibility = () => {
-    setPassVisibility(!passVisibility);
-  };
-
   return (
     <Formik
       initialValues={{
@@ -43,15 +34,11 @@ export function SignInForm() {
             type="text"
           />
           <ErrorMessage component={ErrorMessageText} name="email" />
-          <ToggleVisibilityWrapper
-            src={passVisibility ? imgEye : imgEyeSlash}
-            onClick={changePassVisibility}
-          />
           <Field
             as={Input}
             img={imgLock}
             placeholder="Password"
-            type="password"
+            isVisible
             name="password"
           />
           <ErrorMessage component={ErrorMessageText} name="password" />

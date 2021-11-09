@@ -1,6 +1,34 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import imgEye from '../../img/eye.png';
+import imgEyeSlash from '../../img/eye-slash.png';
 
-export const Input = styled.input`
+export function Input({
+  isVisible, img,
+}) {
+  const [passVisibility, setPassVisibility] = useState(false);
+  const changePassVisibility = () => {
+    setPassVisibility(!passVisibility);
+  };
+
+  return (
+    <Wrapper>
+      <StyledInput img={img} type={passVisibility ? 'text' : 'password'} />
+      {isVisible ? (
+        <Button
+          onClick={changePassVisibility}
+          src={passVisibility ? imgEye : imgEyeSlash}
+        />
+      ) : null}
+    </Wrapper>
+  );
+}
+
+const Wrapper = styled.div`
+position: relative;
+`;
+
+const StyledInput = styled.input`
 width: 368px;
 margin-top: 3.9vh;
 padding: 16px 0 16px 64px;
@@ -23,4 +51,16 @@ position: relative;
     padding: 8px 0 8px 48px;
     background-position: 16px 8px;
 }
+`;
+
+const Button = styled.img`
+position: absolute;
+cursor: pointer;
+z-index: 1000;
+top: 55px;
+right: 20px;
+@media (max-width: 600px) {
+    top: 37px;
+    right: 10px;
+        }
 `;

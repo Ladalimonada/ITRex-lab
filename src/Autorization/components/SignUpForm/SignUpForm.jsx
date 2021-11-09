@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Field, Formik, ErrorMessage } from 'formik';
 import {
   AuthButton,
 } from '../AuthButton';
-import { ToggleVisibilityWrapper } from '../index';
 import {
   Form, ErrorMessageText, Input,
 } from '../../../components';
@@ -11,22 +10,9 @@ import imgName from '../../../img/user.png';
 import imgEmail from '../../../img/email.png';
 import imgLock from '../../../img/lock.png';
 import imgCheck from '../../../img/check.png';
-import imgEye from '../../../img/eye.png';
-import imgEyeSlash from '../../../img/eye-slash.png';
 import { validationsScheme } from '../../validationScheme';
 
 export function SignUpForm() {
-  const [passVisibility, setPassVisibility] = useState(false);
-  const [confirmPassVisibility, setConfirmPassVisibility] = useState(false);
-
-  const changePassVisibility = () => {
-    setPassVisibility(!passVisibility);
-  };
-
-  const changeConfirmPassVisibility = () => {
-    setConfirmPassVisibility(!confirmPassVisibility);
-  };
-
   return (
     <Formik
       initialValues={{
@@ -69,27 +55,19 @@ export function SignUpForm() {
             type="text"
           />
           <ErrorMessage component={ErrorMessageText} name="email" />
-          <ToggleVisibilityWrapper
-            src={passVisibility ? imgEye : imgEyeSlash}
-            onClick={changePassVisibility}
-          />
           <Field
             as={Input}
             img={imgLock}
             placeholder="Password"
-            type={passVisibility ? 'text' : 'password'}
+            isVisible
             name="password"
           />
           <ErrorMessage component={ErrorMessageText} name="password" />
-          <ToggleVisibilityWrapper
-            src={confirmPassVisibility ? imgEye : imgEyeSlash}
-            onClick={changeConfirmPassVisibility}
-          />
           <Field
-            as={Input}
+            component={Input}
             img={imgCheck}
+            isVisible
             placeholder="Confirm Password"
-            type={confirmPassVisibility ? 'text' : 'password'}
             name="confirmPassword"
           />
           <ErrorMessage component={ErrorMessageText} name="confirmPassword" />
