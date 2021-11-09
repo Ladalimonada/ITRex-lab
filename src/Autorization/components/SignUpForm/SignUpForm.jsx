@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Field, Formik, ErrorMessage } from 'formik';
 import {
   AuthButton,
@@ -19,21 +19,13 @@ export function SignUpForm() {
   const [passVisibility, setPassVisibility] = useState(false);
   const [confirmPassVisibility, setConfirmPassVisibility] = useState(false);
 
-  const changePassVisibility = useCallback(() => {
-    if (passVisibility) {
-      setPassVisibility(false);
-    } else {
-      setPassVisibility(true);
-    }
-  }, [passVisibility]);
+  const changePassVisibility = () => {
+    setPassVisibility(!passVisibility);
+  };
 
-  const changeConfirmPassVisibility = useCallback(() => {
-    if (confirmPassVisibility) {
-      setConfirmPassVisibility(false);
-    } else {
-      setConfirmPassVisibility(true);
-    }
-  }, [confirmPassVisibility]);
+  const changeConfirmPassVisibility = () => {
+    setConfirmPassVisibility(!confirmPassVisibility);
+  };
 
   return (
     <Formik

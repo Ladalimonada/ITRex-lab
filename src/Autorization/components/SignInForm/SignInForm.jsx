@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Field, Formik, ErrorMessage } from 'formik';
 import {
   AuthButton,
@@ -16,13 +16,9 @@ import imgEyeSlash from '../../../img/eye-slash.png';
 export function SignInForm() {
   const [passVisibility, setPassVisibility] = useState(false);
 
-  const changePassVisibility = useCallback(() => {
-    if (passVisibility) {
-      setPassVisibility(false);
-    } else {
-      setPassVisibility(true);
-    }
-  }, [passVisibility]);
+  const changePassVisibility = () => {
+    setPassVisibility(!passVisibility);
+  };
 
   return (
     <Formik
