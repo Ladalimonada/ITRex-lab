@@ -88,11 +88,11 @@ export function SignUpForm() {
             type={passVisibility ? 'text' : 'password'}
             name="password"
           />
+          <ErrorMessage component={ErrorMessageText} name="password" />
           <ToggleVisibilityWrapper
             src={confirmPassVisibility ? imgEye : imgEyeSlash}
             onClick={changeConfirmPassVisibility}
           />
-          <ErrorMessage component={ErrorMessageText} name="password" />
           <Field
             as={Input}
             img={imgCheck}
