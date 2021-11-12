@@ -4,7 +4,7 @@ import imgEye from '../../img/eye.png';
 import imgEyeSlash from '../../img/eye-slash.png';
 
 export function Input({
-  isVisible, img,
+  isVisible, img, field, form, meta, ...props
 }) {
   const [passVisibility, setPassVisibility] = useState(false);
   const changePassVisibility = () => {
@@ -13,7 +13,7 @@ export function Input({
 
   return (
     <Wrapper>
-      <StyledInput img={img} type={passVisibility ? 'text' : 'password'} />
+      <StyledInput {...field} {...props} img={img} type={passVisibility ? 'text' : 'password'} />
       {isVisible ? (
         <Button
           onClick={changePassVisibility}
@@ -26,6 +26,7 @@ export function Input({
 
 const Wrapper = styled.div`
 position: relative;
+width: 100%;
 `;
 
 const StyledInput = styled.input`
@@ -57,10 +58,10 @@ const Button = styled.img`
 position: absolute;
 cursor: pointer;
 z-index: 1000;
-top: 55px;
+top: 60%;
 right: 20px;
 @media (max-width: 600px) {
-    top: 37px;
+    top: 35px;
     right: 10px;
         }
 `;

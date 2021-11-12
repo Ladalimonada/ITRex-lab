@@ -35,7 +35,7 @@ export function SignInForm() {
           />
           <ErrorMessage component={ErrorMessageText} name="email" />
           <Field
-            as={Input}
+            component={Input}
             img={imgLock}
             placeholder="Password"
             isVisible

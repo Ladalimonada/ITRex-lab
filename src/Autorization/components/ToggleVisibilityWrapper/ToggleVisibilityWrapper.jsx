@@ -19,9 +19,6 @@ z-index: 1000;
 position: absolute;
 top: 55px;
 right: 20px;
-/* & :hover {
-    outline: none;
-} */
 @media (max-width: 600px) {
     top: 37px;
     right: 10px;

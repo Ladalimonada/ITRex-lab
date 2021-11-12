@@ -64,7 +64,7 @@ export function SignUpForm() {
           />
           <ErrorMessage component={ErrorMessageText} name="password" />
           <Field
-            component={Input}
+            as={Input}
             img={imgCheck}
             isVisible
             placeholder="Confirm Password"
