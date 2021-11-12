@@ -5,9 +5,9 @@ import {
 } from './components';
 import {
   Title, Form, Input, Text,
-} from '../components';
-import imgEmail from '../img/email.png';
-import imgArrow from '../img/angle-left-b.png';
+} from '../../components';
+import imgEmail from '../../img/email.png';
+import imgArrow from '../../img/angle-left-b.png';
 
 export function RestorePass() {
   return (

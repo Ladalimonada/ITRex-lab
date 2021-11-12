@@ -1,9 +1,10 @@
 import React from 'react';
-import { Wrapper } from '../components/Wrapper';
-import imgAvatar from '../img/avatar.png';
-import { ButtonsGroup, Box, Title } from '../components';
+import imgAvatar from '../../img/avatar.png';
+import {
+  ButtonsGroup, Box, Title, Wrapper,
+} from '../../components';
 import { PatientCard } from './components/PatientCard';
-import imgPatientAvatar from '../img/patient-avatar.png';
+import imgPatientAvatar from '../../img/patient-avatar.png';
 import { listofPatients } from './patients';
 
 export function Patients() {

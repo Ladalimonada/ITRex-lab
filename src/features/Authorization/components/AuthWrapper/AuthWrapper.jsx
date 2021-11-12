@@ -1,6 +1,6 @@
 // import React from 'react';
 import styled from 'styled-components';
-import imgBig from '../../../img/bg.png';
+import imgBig from '../../../../img/bg.png';
 
 export const StyledWrapper = styled('div')`
     display: flex;

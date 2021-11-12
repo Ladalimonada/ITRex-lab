@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import imgClock from '../../../img/clock-three.png';
-import imgReason from '../../../img/reason.png';
+import imgClock from '../../../../img/clock-three.png';
+import imgDesc from '../../../../img/clipboard-blank.png';
 
-export function AppontmentCard({
+export function PatientCard({
   avatar, firstName, lastName, status, description, time,
 }) {
   return (
-    <StyledAppointmentCard
+    <StyledPatientCard
       avatar={avatar}
       firstName={firstName}
       lastName={lastName}
@@ -15,11 +15,11 @@ export function AppontmentCard({
       description={description}
       time={time}
     >
-      <StyledAppointmentHeader>
+      <StyledPatientCardHeader>
         <div>
           <img alt="avatar" src={avatar} />
         </div>
-        <StyledAppointmentHeaderContainer>
+        <StyledPatientCardHeaderContainer>
           <h3>
             {firstName}
             {' '}
@@ -28,25 +28,25 @@ export function AppontmentCard({
           <p>
             {status}
           </p>
-        </StyledAppointmentHeaderContainer>
-      </StyledAppointmentHeader>
-      <StyledAppointmentTime>
+        </StyledPatientCardHeaderContainer>
+      </StyledPatientCardHeader>
+      <StyledPatientCardTime>
         <img alt="clock" src={imgClock} />
         <h4>
           {time}
         </h4>
-      </StyledAppointmentTime>
-      <StyledAppointmentDesc>
-        <img alt="description" src={imgReason} />
+      </StyledPatientCardTime>
+      <StyledPatientCardDesc>
+        <img alt="description" src={imgDesc} />
         <p>
           {description}
         </p>
-      </StyledAppointmentDesc>
-    </StyledAppointmentCard>
+      </StyledPatientCardDesc>
+    </StyledPatientCard>
   );
 }
 
-export const StyledAppointmentCard = styled.div`
+export const StyledPatientCard = styled.div`
     background-color: white;    
     padding: 24px 32px 40px;
     width: 406px;
@@ -57,19 +57,19 @@ export const StyledAppointmentCard = styled.div`
         margin-right: 16px;
     }
     @media (max-width: 1100px) {
-        width: 100%;
+        width: auto;
     }
     @media (max-width: 450px) {
         margin-right: 0;
     }
 `;
 
-export const StyledAppointmentHeader = styled.div`
+export const StyledPatientCardHeader = styled.div`
     display: flex;
     margin-bottom: 48px;
 `;
 
-export const StyledAppointmentHeaderContainer = styled.div`
+export const StyledPatientCardHeaderContainer = styled.div`
     h3 {
         font-size: 17px;
         font-weight: 600;
@@ -81,14 +81,14 @@ export const StyledAppointmentHeaderContainer = styled.div`
     }
 `;
 
-export const StyledAppointmentTime = styled.div`
+export const StyledPatientCardTime = styled.div`
     display: flex;
     align-items: center;
     h4 {
        font-weight: 600; 
     }`;
 
-export const StyledAppointmentDesc = styled.div`
+export const StyledPatientCardDesc = styled.div`
     display: flex;
     margin-top: 16px;
     align-items: center;

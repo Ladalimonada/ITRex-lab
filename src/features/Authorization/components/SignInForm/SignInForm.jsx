@@ -5,9 +5,9 @@ import {
 } from '../AuthButton';
 import {
   Form, ErrorMessageText, Input,
-} from '../../../components';
-import imgEmail from '../../../img/email.png';
-import imgLock from '../../../img/lock.png';
+} from '../../../../components';
+import imgEmail from '../../../../img/email.png';
+import imgLock from '../../../../img/lock.png';
 import { validationsScheme } from '../../validationScheme';
 
 export function SignInForm() {

@@ -1,12 +1,10 @@
 import React from 'react';
 import {
-  BrowserRouter, Routes, Route,
+  BrowserRouter, Route, Routes,
 } from 'react-router-dom';
 import {
-  SignIn, SignUp, RestorePass, RestoredPass,
-} from './Autorization';
-import { Patients } from './DoctorView';
-import { Appointments } from './PatientView/Appointments.jsx';
+  Appointments, Patients, RestoredPass, RestorePass, SignIn, SignUp,
+} from './features';
 
 function App() {
   return (

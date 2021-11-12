@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledButton } from '../../../components/Button';
-import img from '../../../img/angle-right-b.png';
+import { StyledButton } from '../../../../components/Button';
+import img from '../../../../img/angle-right-b.png';
 
 export function AuthButton({
   onClick, children, margin = '7vh 0 0',

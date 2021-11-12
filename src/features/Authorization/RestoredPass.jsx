@@ -5,8 +5,8 @@ import {
 } from './components';
 import {
   Title, Text,
-} from '../components';
-import imgArrow from '../img/angle-left-b.png';
+} from '../../components';
+import imgArrow from '../../img/angle-left-b.png';
 
 export function RestoredPass() {
   return (

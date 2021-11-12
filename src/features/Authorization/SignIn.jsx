@@ -5,7 +5,7 @@ import {
 } from './components';
 import {
   Title, Text, LinkElement,
-} from '../components';
+} from '../../components';
 
 export function SignIn() {
   return (

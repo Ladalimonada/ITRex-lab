@@ -1,8 +1,9 @@
 import React from 'react';
-import { Wrapper } from '../components/Wrapper';
-import { ButtonsGroup, Box, Title } from '../components';
+import {
+  ButtonsGroup, Box, Title, Wrapper,
+} from '../../components';
 import { listofAppointments } from './appointments';
-import imgPatientAvatar from '../img/patient-avatar.png';
+import imgPatientAvatar from '../../img/patient-avatar.png';
 import { AppontmentCard } from './components/AppointmentCard';
 
 export function Appointments() {
