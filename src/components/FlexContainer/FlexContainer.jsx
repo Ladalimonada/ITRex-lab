@@ -1,13 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledDiv } from './FlexContainer.styled';
 
-export function FlexContainer({
+export const FlexContainer = ({
   margin, children,
-}) {
-  return <StyledDiv margin={margin}>{children}</StyledDiv>;
-}
-
-const StyledDiv = styled.div`
-    display: flex;
-    margin: ${(props) => props.margin};
-`;
+}) => {
+  <StyledDiv margin={margin}>{children}</StyledDiv>;
+};

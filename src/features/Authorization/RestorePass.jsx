@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  StyledContainer, StyledWrapper, AuthButton, AuthFlexContainer,
+  StyledContainer, StyledWrapper, AuthFlexContainer,
 } from './components';
 import {
-  Title, Form, Input, Text,
+  Title, Text,
 } from '../../components';
-import imgEmail from '../../img/email.png';
 import imgArrow from '../../img/angle-left-b.png';
+import { DICTIONARY } from '../../shared/dictionary';
 
 export function RestorePass() {
   return (
@@ -17,21 +17,13 @@ export function RestorePass() {
           <Link to="/signin">
             <img alt="arrow left" src={imgArrow} />
           </Link>
-          <Title margin="0 0 0 40px">Restore Password</Title>
+          <Title margin="0 0 0 40px">{DICTIONARY.authForm.restorePassword}</Title>
         </AuthFlexContainer>
         <Text width="368px" margin="4vh 0 0">
-          Please use your email address, and we’ll send you the link to reset your password
+          An email has been sent to
+          <span>example@exam.com</span>
+          Check your inbox, and click the reset link provided.
         </Text>
-        <Form>
-          <Input img={imgEmail} placeholder="Email" type="text" />
-          <Link to="/passwordrestored">
-            <div>
-              <AuthButton margin="5vh 0 32px">
-                Send Reset Link
-              </AuthButton>
-            </div>
-          </Link>
-        </Form>
       </StyledContainer>
     </StyledWrapper>
   );

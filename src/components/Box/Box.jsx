@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledBox } from './Box.styled';
 
 export function Box({
   children,
@@ -10,13 +10,3 @@ export function Box({
     </StyledBox>
   );
 }
-
-export const StyledBox = styled.div`
-    max-height: 55vh;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-        width: 0px;
-    }
-`;

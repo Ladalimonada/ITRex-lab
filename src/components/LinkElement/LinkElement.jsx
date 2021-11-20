@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledLink } from './LinkElement.styled';
 
 export function LinkElement({
   children,
@@ -8,11 +8,3 @@ export function LinkElement({
     <StyledLink>{children}</StyledLink>
   );
 }
-
-const StyledLink = styled.a`
-    color: #7297FF;
-    font-weight: 600;
-    text-decoration: underline;
-    line-height: 1.3;
-    cursor: pointer;
-    `;

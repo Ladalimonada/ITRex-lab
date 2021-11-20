@@ -6,18 +6,18 @@ import imgEyeSlash from '../../img/eye-slash.png';
 export function Input({
   isVisible, img, field, form, meta, ...props
 }) {
-  const [passVisibility, setPassVisibility] = useState(false);
+  const [passVisibility, setPassVisibility] = useState(true);
   const changePassVisibility = () => {
     setPassVisibility(!passVisibility);
   };
 
   return (
     <Wrapper>
-      <StyledInput {...field} {...props} img={img} type={passVisibility ? 'text' : 'password'} />
+      <StyledInput {...field} {...props} img={img} type={passVisibility && isVisible ? 'password' : 'text'} />
       {isVisible ? (
         <Button
           onClick={changePassVisibility}
-          src={passVisibility ? imgEye : imgEyeSlash}
+          src={passVisibility ? imgEyeSlash : imgEye}
         />
       ) : null}
     </Wrapper>

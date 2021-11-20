@@ -6,17 +6,18 @@ import {
 import {
   Title, Text, LinkElement,
 } from '../../components';
+import { DICTIONARY } from '../../shared/dictionary';
 
 export function SignUp() {
   return (
     <StyledWrapper>
       <StyledContainer>
-        <Title>Sign Up</Title>
+        <Title>{DICTIONARY.authForm.signUp}</Title>
         <SignUpForm />
         <AuthFooter>
-          <Text margin="10vh 12px 0px 0px">Already have an account?</Text>
+          <Text margin="10vh 12px 0px 0px">{DICTIONARY.authForm.haveAccount}</Text>
           <Link to="/signin">
-            <LinkElement>Sign In</LinkElement>
+            <LinkElement>{DICTIONARY.authForm.signIn}</LinkElement>
           </Link>
         </AuthFooter>
       </StyledContainer>

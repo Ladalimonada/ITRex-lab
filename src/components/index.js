@@ -10,3 +10,4 @@ export { Wrapper } from './Wrapper';
 export { ButtonsGroup } from './ButtonsGroup';
 export { Box } from './Box';
 export { ErrorMessageText } from './ErrorMessageText';
+export { CustomSelect } from './CustomSelect';

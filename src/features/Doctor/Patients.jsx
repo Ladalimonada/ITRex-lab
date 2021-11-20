@@ -6,16 +6,17 @@ import {
 import { PatientCard } from './components/PatientCard';
 import imgPatientAvatar from '../../img/patient-avatar.png';
 import { listofPatients } from './patients';
+import { DICTIONARY } from '../../shared/dictionary';
 
 export function Patients() {
   return (
     <Wrapper avatar={imgAvatar} name="Miranda Nelson" position="Doctor">
       <ButtonsGroup
         buttons={[
-          { title: 'Patients' },
-          { title: 'Resolutions' }]}
+          { title: DICTIONARY.pageName.patients },
+          { title: DICTIONARY.pageName.resolutions }]}
       />
-      <Title margin="0 0 42px">My Patients</Title>
+      <Title margin="0 0 42px">{DICTIONARY.pageName.myPatients}</Title>
       <Box>
         {listofPatients.map((item) => (
           <PatientCard
