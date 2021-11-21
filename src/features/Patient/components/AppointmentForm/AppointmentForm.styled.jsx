@@ -10,12 +10,17 @@ display: flex;
 flex-wrap: wrap;
 margin-top:3em;
 width: 25vw;
+@media only screen and (max-width: 1300px) {
+  width: 100%;
+}
 `;
 
 export const Box = styled.div`
 display: flex;
 justify-content: space-between;
-
+@media only screen and (max-width: 1300px) {
+  flex-direction: column;
+}
 `;
 
 export const StyledH4 = styled.h4`

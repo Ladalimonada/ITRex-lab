@@ -16,4 +16,7 @@ color:#A1ABC9;`;
 export const TextContainer = styled.div`
 display:flex;
 align-items: center;
+@media only screen and (max-width: 1300px) {
+  margin-top: 30px;
+}
 `;

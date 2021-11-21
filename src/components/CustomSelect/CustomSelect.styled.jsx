@@ -6,6 +6,9 @@ export const customStyles = {
     width: '27vw',
     margin: '16px 0 0 0',
     fontSize: '17px',
+    '@media only screen and (max-width: 1300px)': {
+      width: '100%',
+    },
   }),
   valueContainer: (provided) => ({
     ...provided,

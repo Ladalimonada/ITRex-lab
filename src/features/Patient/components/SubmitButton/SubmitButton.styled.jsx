@@ -22,4 +22,7 @@ width: 160px;
 ${(props) => props.isDisabled && css`
 background: #DCE0EC;
 cursor: not-allowed;
-`};`;
+`}
+@media only screen and (max-width: 1300px) {
+  margin-top: 40px;
+};`;
