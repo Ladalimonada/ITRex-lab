@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/ITRex-lab/static/css/main.8d775d40.chunk.css",
-    "main.js": "/ITRex-lab/static/js/main.2049cb44.chunk.js",
-    "main.js.map": "/ITRex-lab/static/js/main.2049cb44.chunk.js.map",
+    "main.js": "/ITRex-lab/static/js/main.3da484b3.chunk.js",
+    "main.js.map": "/ITRex-lab/static/js/main.3da484b3.chunk.js.map",
     "runtime-main.js": "/ITRex-lab/static/js/runtime-main.b669b8d3.js",
     "runtime-main.js.map": "/ITRex-lab/static/js/runtime-main.b669b8d3.js.map",
-    "static/js/2.a8ad8581.chunk.js": "/ITRex-lab/static/js/2.a8ad8581.chunk.js",
-    "static/js/2.a8ad8581.chunk.js.map": "/ITRex-lab/static/js/2.a8ad8581.chunk.js.map",
+    "static/js/2.19f191b3.chunk.js": "/ITRex-lab/static/js/2.19f191b3.chunk.js",
+    "static/js/2.19f191b3.chunk.js.map": "/ITRex-lab/static/js/2.19f191b3.chunk.js.map",
     "index.html": "/ITRex-lab/index.html",
     "static/css/main.8d775d40.chunk.css.map": "/ITRex-lab/static/css/main.8d775d40.chunk.css.map",
-    "static/js/2.a8ad8581.chunk.js.LICENSE.txt": "/ITRex-lab/static/js/2.a8ad8581.chunk.js.LICENSE.txt",
+    "static/js/2.19f191b3.chunk.js.LICENSE.txt": "/ITRex-lab/static/js/2.19f191b3.chunk.js.LICENSE.txt",
     "static/media/bg.1044c32d.png": "/ITRex-lab/static/media/bg.1044c32d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b669b8d3.js",
-    "static/js/2.a8ad8581.chunk.js",
+    "static/js/2.19f191b3.chunk.js",
     "static/css/main.8d775d40.chunk.css",
-    "static/js/main.2049cb44.chunk.js"
+    "static/js/main.3da484b3.chunk.js"
   ]
 }
