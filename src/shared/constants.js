@@ -1,11 +1,11 @@
 export const ROUTES = {
-  SIGN_UP: 'signup',
-  SIGN_IN: 'signin',
-  FORGOT_PASS: 'forgotpass',
-  RESTORE_PASS: 'emailsent',
-  PATIENTS: 'patients',
-  APPOINTMENTS: 'appointments',
-  CREATE_APPOINTMENT: 'newappointment',
+  SIGN_UP: '/signup',
+  SIGN_IN: '/signin',
+  FORGOT_PASS: '/forgotpass',
+  RESTORE_PASS: '/emailsent',
+  PATIENTS: '/patients',
+  APPOINTMENTS: '/appointments',
+  CREATE_APPOINTMENT: '/newappointment',
 };
 
 export const DOCTORS = ['Dermatologist', 'Allergist', 'Cardiologist', 'Therapist'];
