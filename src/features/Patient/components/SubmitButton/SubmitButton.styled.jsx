@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const StyledButton = styled.button`
 width: 160px;
-  margin-top: 50%;
+  margin-top: 10em;
   margin-bottom: 20px;
   align-self: flex-end;
   padding: 16px 40px;
