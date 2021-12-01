@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, useState } from 'react';
 import * as dayjs from 'dayjs';
@@ -50,7 +49,7 @@ export function AppointmentForm() {
     dispatch(getFreeTime({ date: isoStringDate, doctorID: currentDoctor.value }));
   };
 
-  const handleCreateAppointment = ({
+  const handleCreateAppointment = async ({
     time, visitReason, note,
   }) => {
     const params = {
@@ -59,7 +58,7 @@ export function AppointmentForm() {
       note,
       doctorID: currentDoctor.value,
     };
-    dispatch(createAppointment(params));
+    await dispatch(createAppointment(params));
   };
   return (
     <Container>
@@ -111,8 +110,9 @@ export function AppointmentForm() {
                     setDoctor(e);
                     setFieldValue('doctorsName', e.value);
                     dispatch(getFreeTime({
-                      date: calendarValue.toISOString(),
-                      doctorID: currentDoctor.value,
+                      date: new Date(calendarValue.getTime()
+                      - (calendarValue.getTimezoneOffset() * 60000)).toISOString(),
+                      doctorID: e.value,
                     }));
                   }}
                 />
@@ -144,8 +144,8 @@ export function AppointmentForm() {
                       name="time"
                       label={item.label}
                       key={item.label}
-                      isDisabled={useMemo(() => !availableTimeSlots
-                        .find((timeItem) => timeItem === item.label),
+                      isDisabled={useMemo(() => (currentDoctor ? !availableTimeSlots
+                        .find((timeItem) => timeItem === item.label) : true),
                       [availableTimeSlots])}
                     />
                   ))}
