@@ -27,6 +27,9 @@ export const getUserProfile = createAsyncThunk(
   'auth/profile',
   async () => {
     const response = await authService.profile();
+    if (response.data && response.data.role_name) {
+      localStorage.setItem('userRole', response.data.role_name);
+    }
     return response.data;
   },
 );

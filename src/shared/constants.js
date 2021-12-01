@@ -8,6 +8,8 @@ export const ROUTES = {
   CREATE_APPOINTMENT: 'appointments/create',
 };
 
+export const ROLES = ['Doctor', 'Patient'];
+
 export const DOCTORS_SPECIALIZATIONS = [
   {
     id: 'c43fca01-3ea9-48f5-b5d8-4d7a4705e30f',

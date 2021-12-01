@@ -50,7 +50,7 @@ export function AppointmentForm() {
     dispatch(getFreeTime({ date: isoStringDate, doctorID: currentDoctor.value }));
   };
 
-  const handleCreateAppointment = async ({
+  const handleCreateAppointment = ({
     time, visitReason, note,
   }) => {
     const params = {
@@ -59,7 +59,7 @@ export function AppointmentForm() {
       note,
       doctorID: currentDoctor.value,
     };
-    await dispatch(createAppointment(params));
+    dispatch(createAppointment(params));
   };
   return (
     <Container>
@@ -70,7 +70,7 @@ export function AppointmentForm() {
           visitReason: '',
           note: '',
           date: calendarValue,
-          time: calendarValue,
+          time: '',
         }}
         onSubmit={handleCreateAppointment}
         validationSchema={newAppointmentValidation}
@@ -110,7 +110,10 @@ export function AppointmentForm() {
                   onChange={(e) => {
                     setDoctor(e);
                     setFieldValue('doctorsName', e.value);
-                    dispatch(getFreeTime({ date: calendarValue.toISOString(), doctorID: e.value }));
+                    dispatch(getFreeTime({
+                      date: calendarValue.toISOString(),
+                      doctorID: currentDoctor.value,
+                    }));
                   }}
                 />
                 <ErrorMessage component={ErrorMessageText} name="doctorsName" />
@@ -118,7 +121,8 @@ export function AppointmentForm() {
                 <Field as={AppointmentInput} name="visitReason" placeholder={DICTIONARY.newAppointmentPlaseholders.visitReason} />
                 <ErrorMessage component={ErrorMessageText} name="visitReason" />
                 <StyledH4>{DICTIONARY.newAppointmentLabels.note}</StyledH4>
-                <Field as={AppointmentInput} placeholder={DICTIONARY.newAppointmentPlaseholders.note} name="note" />
+                <Field as={AppointmentInput} name="note" placeholder={DICTIONARY.newAppointmentPlaseholders.note} />
+                <ErrorMessage component={ErrorMessageText} name="note" />
               </Container>
               <Container>
                 <TitleWithCircle number="2" text={DICTIONARY.newAppointment.selectDay} />

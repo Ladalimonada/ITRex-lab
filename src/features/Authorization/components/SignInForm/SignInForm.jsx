@@ -5,7 +5,7 @@
 import React from 'react';
 import { Field, Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   AuthButton,
 } from '../AuthButton';
@@ -19,20 +19,24 @@ import { DICTIONARY } from '../../../../shared/dictionary';
 import { logInUser, getUserProfile } from '../../authSlice';
 
 export function SignInForm() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleLog = async ({
+
+  const handleLog = ({
     email, password,
   }) => {
     const params = {
       userName: email,
       password,
     };
-    await dispatch(logInUser(params));
-    await dispatch(getUserProfile());
-    // const userRole = useSelector((state) => state.auth.profile.role_name);
-    // { userRole ? (userRole === 'Patient' ? navigate('/appointments', { replace: true })
-    //   : navigate('/patients', { replace: true })) : null; }
+    dispatch(logInUser(params));
+    dispatch(getUserProfile());
+    const userRole = localStorage.getItem('userRole');
+    if (userRole === 'Patient') {
+      navigate('/appointments', { replace: true });
+    } else if (userRole === 'Doctor') {
+      navigate('/patients', { replace: true });
+    }
   };
   return (
     <Formik
@@ -63,7 +67,7 @@ export function SignInForm() {
           />
           <ErrorMessage component={ErrorMessageText} name="password" />
           <div>
-            <AuthButton onClick={handleSubmit} type="submit" marginType>
+            <AuthButton onClick={handleSubmit} marginType>
               {DICTIONARY.authForm.signIn}
             </AuthButton>
           </div>

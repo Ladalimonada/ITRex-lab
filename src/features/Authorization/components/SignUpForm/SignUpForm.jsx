@@ -21,7 +21,7 @@ import { createUser, getUserProfile } from '../../authSlice';
 export function SignUpForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleReg = async ({
+  const handleReg = ({
     firstName, lastName, email, password,
   }) => {
     const params = {
@@ -30,9 +30,12 @@ export function SignUpForm() {
       userName: email,
       password,
     };
-    await dispatch(createUser(params));
-    await dispatch(getUserProfile());
-    navigate('/sign-in', { replace: true });
+    dispatch(createUser(params));
+    dispatch(getUserProfile());
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/sign-in', { replace: true });
+    }
   };
   return (
     <Formik
