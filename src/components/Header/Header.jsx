@@ -4,10 +4,10 @@ import {
 } from './Header.styled';
 import logo from '../../img/logo.png';
 import { Text } from '../Text';
-import { StyledTitle } from '../Title/Title';
+import { Title } from '../Title/Title';
 
 export function Header({
-  avatar, name, position,
+  avatar, name, role,
 }) {
   return (
     <StyledHeader>
@@ -16,11 +16,11 @@ export function Header({
       </div>
       <StyledHeaderContainer>
         <StyledNameContainer>
-          <StyledTitle>{name}</StyledTitle>
-          <Text>{position}</Text>
+          <Title>{name}</Title>
+          <Text>{role}</Text>
         </StyledNameContainer>
         <div>
-          <img alt="avatar" src={avatar} />
+          <img alt="avatar" width="40" height="40" src={avatar} />
         </div>
       </StyledHeaderContainer>
     </StyledHeader>

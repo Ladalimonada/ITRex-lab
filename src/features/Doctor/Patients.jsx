@@ -1,16 +1,25 @@
-import React from 'react';
-import imgAvatar from '../../img/avatar.png';
+/* eslint-disable camelcase */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as dayjs from 'dayjs';
 import {
   ButtonsGroup, Box, Title, Wrapper,
 } from '../../components';
 import { PatientCard } from './components/PatientCard';
-import imgPatientAvatar from '../../img/patient-avatar.png';
-import { listofPatients } from './patients';
 import { DICTIONARY } from '../../shared/dictionary';
+import { getAppointments } from './doctorSlice';
 
 export function Patients() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAppointments());
+  }, [dispatch]);
+
+  const appointments = useSelector((state) => state.doctor.doctorappointments.appointments);
+  console.log(appointments);
   return (
-    <Wrapper avatar={imgAvatar} name="Miranda Nelson" position="Doctor">
+    <Wrapper>
       <ButtonsGroup
         buttons={[
           { title: DICTIONARY.pageName.patients },
@@ -18,16 +27,21 @@ export function Patients() {
       />
       <Title margin="0 0 42px">{DICTIONARY.pageName.myPatients}</Title>
       <Box>
-        {listofPatients.map((item) => (
+        {appointments ? appointments.map(({
+          patient: {
+            first_name, last_name, photo,
+          },
+          reason, visit_date, status,
+        }) => (
           <PatientCard
-            avatar={imgPatientAvatar}
-            firstName={item.firstName}
-            lastName={item.lastName}
-            status={item.status}
-            description={item.description}
-            time={item.time}
+            avatar={photo}
+            firstName={first_name}
+            lastName={last_name}
+            status={status}
+            description={reason}
+            time={dayjs(visit_date).format('ddd MMM D, YYYY h:mm A')}
           />
-        ))}
+        )) : null}
       </Box>
     </Wrapper>
   );

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledLabel = styled.label`
 position: relative;
@@ -8,9 +8,14 @@ align-items: center;
 cursor: pointer;
 height: 40px;
 width: 104px;
-background-color: ${(props) => (props.disabled ? 'red' : 'white')};
+background-color: white;
 font-weight: 600;
 border-radius: 8px;
+${(props) => props.isDisabled && css`
+background: #DCE0EC;
+color: white;
+cursor: not-allowed;
+`}
 `;
 
 export const StyledRadioButton = styled.input`

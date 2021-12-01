@@ -1,7 +1,11 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, useState } from 'react';
+import * as dayjs from 'dayjs';
 import {
   Field, Formik, Form, ErrorMessage,
 } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import Calendar from 'react-calendar';
 import {
   Container, StyledRadiButtonGroup, Box, StyledH4,
@@ -13,31 +17,50 @@ import {
   CustomSelect, ErrorMessageText,
 } from '../../../../components';
 import './Calendar.css';
-import { DOCTORS, AVAILABLE_TIMESLOTS } from '../../../../shared/constants';
-import { listofDoctors } from '../../doctors';
+import { DOCTORS_SPECIALIZATIONS, AVAILABLE_TIMESLOTS } from '../../../../shared/constants';
 import { newAppointmentValidation } from './appointmentValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
+import { createAppointment, getDoctors, getFreeTime } from '../../appointmentSlice';
 
 export function AppointmentForm() {
-  const [calendarValue, onChange] = useState(new Date());
-  const [doctorsSpecialization, setDoctorsSpecialization] = useState('');
+  const [calendarValue, setCalendarValue] = useState(new Date());
   const [currentDoctor, setDoctor] = useState('');
 
-  const optionsSpecialization = DOCTORS.map((doctor) => ({
-    value: doctor,
-    label: doctor,
+  const dispatch = useDispatch();
+
+  const optionsSpecialization = DOCTORS_SPECIALIZATIONS.map((doctor) => ({
+    value: doctor.id,
+    label: doctor.specialization_name,
   }));
 
-  const doctorsOptions = useMemo(() => {
-    const newArray = listofDoctors.filter(
-      (doctor) => doctor.occupation === doctorsSpecialization.value,
-    )
-      .map((doctor) => ({
-        label: `${doctor.firstName} ${doctor.lastName}`,
-        value: `${doctor.firstName} ${doctor.lastName}`,
-      })); return newArray;
-  }, [doctorsSpecialization]);
+  const doctors = useSelector((state) => state.appointment.doctors);
+  const doctorsOptions = doctors.map((doctor) => ({
+    value: doctor.id,
+    label: `${doctor.first_name} ${doctor.last_name}`,
+  }));
 
+  const timeSlots = useSelector((state) => state.appointment.freeTime);
+
+  const availableTimeSlots = timeSlots.map((item) => dayjs(item).format('h:00 a'));
+
+  const onDateChange = (value) => {
+    setCalendarValue(value);
+    const isoStringDate = new Date(value.getTime()
+    - (value.getTimezoneOffset() * 60000)).toISOString();
+    dispatch(getFreeTime({ date: isoStringDate, doctorID: currentDoctor.value }));
+  };
+
+  const handleCreateAppointment = async ({
+    time, visitReason, note,
+  }) => {
+    const params = {
+      date: calendarValue.toISOString().substring(0, 11).concat(time),
+      reason: visitReason,
+      note,
+      doctorID: currentDoctor.value,
+    };
+    await dispatch(createAppointment(params));
+  };
   return (
     <Container>
       <Formik
@@ -46,12 +69,10 @@ export function AppointmentForm() {
           doctorsName: '',
           visitReason: '',
           note: '',
-          date: { calendarValue },
-          time: '',
+          date: calendarValue,
+          time: calendarValue,
         }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleCreateAppointment}
         validationSchema={newAppointmentValidation}
       >
         {({
@@ -69,13 +90,13 @@ export function AppointmentForm() {
                   name="occupation"
                   placeholder={DICTIONARY.newAppointmentPlaseholders.occupation}
                   options={optionsSpecialization}
-                  value={doctorsSpecialization}
+                  value={optionsSpecialization.label}
                   onChange={(e) => {
-                    if (e.value !== doctorsSpecialization.value) {
+                    if (e.value !== optionsSpecialization.label) {
                       setDoctor('');
                     }
-                    setDoctorsSpecialization(e);
                     setFieldValue('occupation', e.value);
+                    dispatch(getDoctors(e.value));
                   }}
                 />
                 <ErrorMessage component={ErrorMessageText} name="occupation" />
@@ -89,6 +110,7 @@ export function AppointmentForm() {
                   onChange={(e) => {
                     setDoctor(e);
                     setFieldValue('doctorsName', e.value);
+                    dispatch(getFreeTime({ date: calendarValue.toISOString(), doctorID: e.value }));
                   }}
                 />
                 <ErrorMessage component={ErrorMessageText} name="doctorsName" />
@@ -101,7 +123,8 @@ export function AppointmentForm() {
               <Container>
                 <TitleWithCircle number="2" text={DICTIONARY.newAppointment.selectDay} />
                 <Calendar
-                  onChange={onChange}
+                  name="date"
+                  onChange={onDateChange}
                   value={calendarValue}
                   minDate={new Date()}
                   formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
@@ -113,10 +136,13 @@ export function AppointmentForm() {
                   {AVAILABLE_TIMESLOTS.map((item) => (
                     <Field
                       as={RadioButton}
-                      value={item}
+                      value={item.value}
                       name="time"
-                      label={item}
-                      key={item}
+                      label={item.label}
+                      key={item.label}
+                      isDisabled={useMemo(() => !availableTimeSlots
+                        .find((timeItem) => timeItem === item.label),
+                      [availableTimeSlots])}
                     />
                   ))}
                 </StyledRadiButtonGroup>

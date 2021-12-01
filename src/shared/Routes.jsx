@@ -9,6 +9,7 @@ export function Routing() {
   return (
     <Routes>
       <Route path="/" element={<SignUp />} />
+
       <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
       <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
       <Route path={ROUTES.FORGOT_PASS} element={<ForgotPass />} />

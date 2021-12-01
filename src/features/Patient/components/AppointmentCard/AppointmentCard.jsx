@@ -8,29 +8,27 @@ import imgClock from '../../../../img/clock-three.png';
 import imgReason from '../../../../img/reason.png';
 
 export function AppontmentCard({
-  avatar, firstName, lastName, status, description, time,
+  avatar, firstName, lastName, doctorsSpecialization, description, time,
 }) {
   return (
     <StyledAppointmentCard
       avatar={avatar}
       firstName={firstName}
       lastName={lastName}
-      status={status}
+      doctorsSpecialization={doctorsSpecialization}
       description={description}
       time={time}
     >
       <StyledAppointmentHeader>
         <div>
-          <img alt="avatar" src={avatar} />
+          <img alt="avatar" height={40} width={40} src={avatar} />
         </div>
         <StyledAppointmentHeaderContainer>
           <h3>
-            {firstName}
-            {' '}
-            {lastName}
+            {`${firstName} ${lastName}`}
           </h3>
           <p>
-            {status}
+            {doctorsSpecialization}
           </p>
         </StyledAppointmentHeaderContainer>
       </StyledAppointmentHeader>

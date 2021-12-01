@@ -1,10 +1,15 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable no-unused-expressions */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  StyledContainer, StyledWrapper, AuthFooter, AuthFlexContainer, SignInForm,
+  AuthFooter, SignInForm,
 } from './components';
 import {
-  Title, Text, LinkElement,
+  StyledBox, StyledWrapper, StyledContainer, StyledText,
+} from './Authorization.styled';
+import {
+  Title, LinkElement,
 } from '../../components';
 import { DICTIONARY } from '../../shared/dictionary';
 
@@ -12,16 +17,22 @@ export function SignIn() {
   return (
     <StyledWrapper>
       <StyledContainer>
-        <AuthFlexContainer margin="13vh 0 0">
+        <StyledBox>
           <Title>{DICTIONARY.authForm.signIn}</Title>
-        </AuthFlexContainer>
+        </StyledBox>
         <SignInForm />
         <Link to="/restorepass">
-          <LinkElement>{DICTIONARY.authForm.forgotPassword}</LinkElement>
+          <LinkElement>
+            {DICTIONARY.authForm.forgotPassword}
+          </LinkElement>
         </Link>
         <AuthFooter>
-          <Text margin="10vh 12px 0px 0px">{DICTIONARY.authForm.haveAccount}</Text>
-          <LinkElement>{DICTIONARY.authForm.signIn}</LinkElement>
+          <StyledText>
+            {DICTIONARY.authForm.haveAccount}
+          </StyledText>
+          <LinkElement>
+            {DICTIONARY.authForm.signIn}
+          </LinkElement>
         </AuthFooter>
       </StyledContainer>
     </StyledWrapper>

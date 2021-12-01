@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Field, Formik, Form, ErrorMessage,
 } from 'formik';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   AuthButton,
 } from '../AuthButton';
@@ -14,8 +16,24 @@ import imgLock from '../../../../img/lock.png';
 import imgCheck from '../../../../img/check.png';
 import { signUpValidation } from '../../authValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
+import { createUser, getUserProfile } from '../../authSlice';
 
 export function SignUpForm() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleReg = async ({
+    firstName, lastName, email, password,
+  }) => {
+    const params = {
+      firstName,
+      lastName,
+      userName: email,
+      password,
+    };
+    await dispatch(createUser(params));
+    await dispatch(getUserProfile());
+    navigate('/sign-in', { replace: true });
+  };
   return (
     <Formik
       const
@@ -26,9 +44,7 @@ export function SignUpForm() {
         password: '',
         confirmPassword: '',
       }}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
+      onSubmit={handleReg}
       validationSchema={signUpValidation}
     >
       {({

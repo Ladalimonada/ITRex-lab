@@ -12,8 +12,8 @@ export const passwordValidation = Yup
   .string()
   .required('Password is required')
   .matches(
-    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/,
-    'Password must contain a capital letter, a number and be at least 8 characters long',
+    /^(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/,
+    'Password must contain a capital letter and be at least 8 characters long',
   );
 
 export const signUpValidation = Yup.object().shape({

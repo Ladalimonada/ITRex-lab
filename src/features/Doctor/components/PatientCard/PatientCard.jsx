@@ -23,13 +23,11 @@ export function PatientCard({
     >
       <StyledPatientCardHeader>
         <div>
-          <img alt="avatar" src={avatar} />
+          <img alt="avatar" src={avatar} height={40} width={40} />
         </div>
         <StyledPatientCardHeaderContainer>
           <h3>
-            {firstName}
-            {' '}
-            {lastName}
+            {`${firstName} ${lastName}`}
           </h3>
           <p>
             {status}
