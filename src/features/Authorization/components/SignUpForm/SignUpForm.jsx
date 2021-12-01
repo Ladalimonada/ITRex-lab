@@ -21,7 +21,7 @@ import { createUser, getUserProfile } from '../../authSlice';
 export function SignUpForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleReg = ({
+  const handleReg = async ({
     firstName, lastName, email, password,
   }) => {
     const params = {
@@ -30,8 +30,8 @@ export function SignUpForm() {
       userName: email,
       password,
     };
-    dispatch(createUser(params));
-    dispatch(getUserProfile());
+    await dispatch(createUser(params));
+    await dispatch(getUserProfile());
     const token = localStorage.getItem('token');
     if (token) {
       navigate('/sign-in', { replace: true });

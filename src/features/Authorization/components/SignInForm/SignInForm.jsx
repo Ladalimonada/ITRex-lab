@@ -1,7 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-lone-blocks */
 import React from 'react';
 import { Field, Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -22,19 +18,19 @@ export function SignInForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLog = ({
+  const handleLog = async ({
     email, password,
   }) => {
     const params = {
       userName: email,
       password,
     };
-    dispatch(logInUser(params));
-    dispatch(getUserProfile());
+    await dispatch(logInUser(params));
+    await dispatch(getUserProfile());
     const userRole = localStorage.getItem('userRole');
-    if (userRole === 'Patient') {
+    if (userRole && userRole === 'Patient') {
       navigate('/appointments', { replace: true });
-    } else if (userRole === 'Doctor') {
+    } else if (userRole && userRole === 'Doctor') {
       navigate('/patients', { replace: true });
     }
   };

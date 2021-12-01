@@ -1,11 +1,11 @@
 export const ROUTES = {
-  SIGN_UP: 'sign-up',
-  SIGN_IN: 'sign-in',
-  FORGOT_PASS: 'forgotpass',
-  RESTORE_PASS: 'email-sent',
-  PATIENTS: 'patients',
-  APPOINTMENTS: 'appointments',
-  CREATE_APPOINTMENT: 'appointments/create',
+  SIGN_UP: '/sign-up',
+  SIGN_IN: '/sign-in',
+  FORGOT_PASS: '/forgotpass',
+  RESTORE_PASS: '/email-sent',
+  PATIENTS: '/patients',
+  APPOINTMENTS: '/appointments',
+  CREATE_APPOINTMENT: '/appointments/create',
 };
 
 export const ROLES = ['Doctor', 'Patient'];
