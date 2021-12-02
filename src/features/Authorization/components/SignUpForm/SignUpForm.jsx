@@ -4,12 +4,8 @@ import {
 } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  AuthButton,
-} from '../AuthButton';
-import {
-  ErrorMessageText, Input,
-} from '../../../../components';
+import { AuthButton } from '../index';
+import { ErrorMessageText, Input } from '../../../../components';
 import imgName from '../../../../img/user.png';
 import imgEmail from '../../../../img/email.png';
 import imgLock from '../../../../img/lock.png';
@@ -17,10 +13,12 @@ import imgCheck from '../../../../img/check.png';
 import { signUpValidation } from '../../authValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
 import { createUser, getUserProfile } from '../../authSlice';
+import { ROUTES } from '../../../../shared/constants';
 
 export function SignUpForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleReg = async ({
     firstName, lastName, email, password,
   }) => {
@@ -34,7 +32,7 @@ export function SignUpForm() {
     await dispatch(getUserProfile());
     const token = localStorage.getItem('token');
     if (token) {
-      navigate('/sign-in', { replace: true });
+      navigate(`${ROUTES.SIGN_IN}`, { replace: true });
     }
   };
   return (

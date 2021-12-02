@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import imgBig from '../../img/bg.png';
 
 export const StyledWrapper = styled('div')`
@@ -57,3 +58,19 @@ export const StyledText = styled.p`
 export const StyledRestoreText = styled(StyledText)`
     width: 368px;
     margin: 4vh 0 0;`;
+
+export const AuthFooter = styled.div`
+    display: flex;
+    align-items: flex-end;
+    @media (max-width: 600px) {
+    display: block;
+    }
+    `;
+
+export const StyledLink = styled(Link)`
+    color: #7297FF;
+    font-weight: 600;
+    text-decoration: underline;
+    line-height: 1.3;
+    cursor: pointer;
+`;

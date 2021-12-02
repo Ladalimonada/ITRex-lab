@@ -23,15 +23,15 @@ export function Routing() {
       <Route path={ROUTES.RESTORE_PASS} element={<RestorePass />} />
       <Route
         path={ROUTES.PATIENTS}
-        element={<PrivateRoute roles={['Doctor']} component={Patients} />}
+        element={<PrivateRoute roles={['Doctor', 'Admin']} component={Patients} />}
       />
       <Route
         path={ROUTES.APPOINTMENTS}
-        element={<PrivateRoute roles={['Patient']} component={Appointments} />}
+        element={<PrivateRoute roles={['Patient', 'Admin']} component={Appointments} />}
       />
       <Route
         path={ROUTES.CREATE_APPOINTMENT}
-        element={<PrivateRoute roles={['Patient']} component={CreateAppointment} />}
+        element={<PrivateRoute roles={['Patient', 'Admin']} component={CreateAppointment} />}
       />
     </Routes>
   );

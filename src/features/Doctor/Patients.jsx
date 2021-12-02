@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as dayjs from 'dayjs';
 import {
-  ButtonsGroup, Box, Title, Wrapper,
+  ButtonsGroup, Box, Wrapper,
 } from '../../components';
+import { StyledTitle } from './Doctor.styled';
 import { PatientCard } from './components/PatientCard';
 import { DICTIONARY } from '../../shared/dictionary';
 import { getAppointments } from './doctorSlice';
@@ -17,7 +18,7 @@ export function Patients() {
   }, [dispatch]);
 
   const appointments = useSelector((state) => state.doctor.doctorappointments.appointments);
-  console.log(appointments);
+
   return (
     <Wrapper>
       <ButtonsGroup
@@ -25,7 +26,7 @@ export function Patients() {
           { title: DICTIONARY.pageName.patients },
           { title: DICTIONARY.pageName.resolutions }]}
       />
-      <Title margin="0 0 42px">{DICTIONARY.pageName.myPatients}</Title>
+      <StyledTitle>{DICTIONARY.pageName.myPatients}</StyledTitle>
       <Box>
         {appointments ? appointments.map(({
           patient: {
@@ -40,6 +41,7 @@ export function Patients() {
             status={status}
             description={reason}
             time={dayjs(visit_date).format('ddd MMM D, YYYY h:mm A')}
+            key={visit_date}
           />
         )) : null}
       </Box>

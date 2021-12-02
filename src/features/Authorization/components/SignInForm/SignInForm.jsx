@@ -1,12 +1,14 @@
 import React from 'react';
-import { Field, Formik, ErrorMessage } from 'formik';
+import {
+  Field, Formik, Form, ErrorMessage,
+} from 'formik';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   AuthButton,
 } from '../AuthButton';
 import {
-  Form, ErrorMessageText, Input,
+  ErrorMessageText, Input,
 } from '../../../../components';
 import imgEmail from '../../../../img/email.png';
 import imgLock from '../../../../img/lock.png';

@@ -15,6 +15,7 @@ export function ButtonsGroup({
     <StyledGroupButton
       isActive={title === activeButton}
       onClick={() => handleOnClick(title)}
+      key={title}
     >
       {title}
 

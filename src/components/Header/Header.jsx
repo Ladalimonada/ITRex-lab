@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  StyledHeader, StyledHeaderContainer, StyledNameContainer,
+  StyledHeader, StyledHeaderContainer, StyledNameContainer, StyledText,
 } from './Header.styled';
 import logo from '../../img/logo.png';
-import { Text } from '../Text';
 import { Title } from '../Title/Title';
 
 export function Header({
@@ -17,7 +16,7 @@ export function Header({
       <StyledHeaderContainer>
         <StyledNameContainer>
           <Title>{name}</Title>
-          <Text>{role}</Text>
+          <StyledText>{role}</StyledText>
         </StyledNameContainer>
         <div>
           <img alt="avatar" width="40" height="40" src={avatar} />

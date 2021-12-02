@@ -1,14 +1,13 @@
 import React from 'react';
-import {
-  Title, Wrapper,
-} from '../../components';
+import { Wrapper } from '../../components';
 import { AppointmentForm } from './components';
+import { StyledTitleAppointment } from './Patient.styled';
 import { DICTIONARY } from '../../shared/dictionary';
 
 export function CreateAppointment() {
   return (
     <Wrapper>
-      <Title margin="10vh 0 40px">{DICTIONARY.pageName.makeAppointment}</Title>
+      <StyledTitleAppointment>{DICTIONARY.pageName.makeAppointment}</StyledTitleAppointment>
       <AppointmentForm />
     </Wrapper>
   );

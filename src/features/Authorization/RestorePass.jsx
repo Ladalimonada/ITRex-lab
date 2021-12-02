@@ -5,13 +5,14 @@ import {
 } from './Authorization.styled';
 import imgArrow from '../../img/angle-left-b.png';
 import { DICTIONARY } from '../../shared/dictionary';
+import { ROUTES } from '../../shared/constants';
 
 export function RestorePass() {
   return (
     <StyledWrapper>
       <StyledContainer>
         <StyledBox>
-          <Link to="/signin">
+          <Link to={ROUTES.SIGN_IN}>
             <img alt="arrow left" src={imgArrow} />
           </Link>
           <StyledTitle>{DICTIONARY.authForm.restorePassword}</StyledTitle>

@@ -1,17 +1,11 @@
-/* eslint-disable no-lone-blocks */
-/* eslint-disable no-unused-expressions */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SignInForm } from './components';
 import {
-  AuthFooter, SignInForm,
-} from './components';
-import {
-  StyledBox, StyledWrapper, StyledContainer, StyledText,
+  StyledBox, StyledWrapper, StyledContainer, StyledText, AuthFooter, StyledLink,
 } from './Authorization.styled';
-import {
-  Title, LinkElement,
-} from '../../components';
+import { Title } from '../../components';
 import { DICTIONARY } from '../../shared/dictionary';
+import { ROUTES } from '../../shared/constants';
 
 export function SignIn() {
   return (
@@ -21,18 +15,16 @@ export function SignIn() {
           <Title>{DICTIONARY.authForm.signIn}</Title>
         </StyledBox>
         <SignInForm />
-        <Link to="/restorepass">
-          <LinkElement>
-            {DICTIONARY.authForm.forgotPassword}
-          </LinkElement>
-        </Link>
+        <StyledLink to={ROUTES.FORGOT_PASS}>
+          {DICTIONARY.authForm.forgotPassword}
+        </StyledLink>
         <AuthFooter>
           <StyledText>
-            {DICTIONARY.authForm.haveAccount}
+            {DICTIONARY.authForm.dontHaveAccount}
           </StyledText>
-          <LinkElement>
-            {DICTIONARY.authForm.signIn}
-          </LinkElement>
+          <StyledLink to={ROUTES.SIGN_UP}>
+            {DICTIONARY.authForm.signUp}
+          </StyledLink>
         </AuthFooter>
       </StyledContainer>
     </StyledWrapper>

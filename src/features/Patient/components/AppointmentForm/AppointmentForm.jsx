@@ -12,9 +12,7 @@ import {
 import {
   RadioButton, AppointmentInput, TitleWithCircle, SubmitButton,
 } from '../index';
-import {
-  CustomSelect, ErrorMessageText,
-} from '../../../../components';
+import { CustomSelect, ErrorMessageText } from '../../../../components';
 import './Calendar.css';
 import { DOCTORS_SPECIALIZATIONS, AVAILABLE_TIMESLOTS } from '../../../../shared/constants';
 import { newAppointmentValidation } from './appointmentValidation';
@@ -146,7 +144,7 @@ export function AppointmentForm() {
                       key={item.label}
                       isDisabled={useMemo(() => (currentDoctor ? !availableTimeSlots
                         .find((timeItem) => timeItem === item.label) : true),
-                      [availableTimeSlots])}
+                      [availableTimeSlots, item.label])}
                     />
                   ))}
                 </StyledRadiButtonGroup>

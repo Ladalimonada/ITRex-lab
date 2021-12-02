@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as dayjs from 'dayjs';
-import {
-  ButtonsGroup, Box, Title, Wrapper,
-} from '../../components';
+import { ButtonsGroup, Box, Wrapper } from '../../components';
+import { StyledTitle, StyledContainer } from './Patient.styled';
 import { AppontmentCard, AppointmentButton } from './components';
 import { DICTIONARY } from '../../shared/dictionary';
 import { getAppointments } from './appointmentSlice';
+import { ROUTES } from '../../shared/constants';
 
 export function Appointments() {
   const dispatch = useDispatch();
@@ -19,30 +19,26 @@ export function Appointments() {
 
   const patientAppointments = useSelector((state) => state
     .appointment.patientAppointments.appointments);
-  console.log(patientAppointments);
 
   return (
     <Wrapper>
       <ButtonsGroup
         buttons={[
-          { title: DICTIONARY.pageName.profile },
           { title: DICTIONARY.pageName.appointments },
+          { title: DICTIONARY.pageName.profile },
           { title: DICTIONARY.pageName.resolutions },
         ]}
       />
-      <div style={{
-        display: 'flex', justifyContent: 'space-between',
-      }}
-      >
-        <Title margin="0 0 42px">{DICTIONARY.pageName.myAppointments}</Title>
+      <StyledContainer>
+        <StyledTitle>{DICTIONARY.pageName.myAppointments}</StyledTitle>
         <div>
-          <Link to="create">
+          <Link to={ROUTES.CREATE_APPOINTMENT}>
             <AppointmentButton>
               {DICTIONARY.newAppointment.createAppointment}
             </AppointmentButton>
           </Link>
         </div>
-      </div>
+      </StyledContainer>
       <Box>
         {patientAppointments ? patientAppointments.map(({
           doctor: {
@@ -57,6 +53,7 @@ export function Appointments() {
             doctorsSpecialization={specialization_name}
             description={note}
             time={dayjs(visit_date).format('ddd MMM D, YYYY h:mm A')}
+            key={`${visit_date} ${last_name}`}
           />
         )) : null}
       </Box>
