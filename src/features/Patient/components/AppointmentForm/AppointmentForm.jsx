@@ -10,7 +10,7 @@ import {
   Container, StyledRadiButtonGroup, Box, StyledH4,
 } from './AppointmentForm.styled';
 import {
-  RadioButton, AppointmentInput, TitleWithCircle, SubmitButton,
+  RadioButton, AppointmentInput, AppointmentContainer, SubmitButton,
 } from '../index';
 import { CustomSelect, ErrorMessageText } from '../../../../components';
 import './Calendar.css';
@@ -18,6 +18,7 @@ import { DOCTORS_SPECIALIZATIONS, AVAILABLE_TIMESLOTS } from '../../../../shared
 import { newAppointmentValidation } from './appointmentValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
 import { createAppointment, getDoctors, getFreeTime } from '../../appointmentSlice';
+import { getDateFormat } from '../../../../shared/utils';
 
 export function AppointmentForm() {
   const [calendarValue, setCalendarValue] = useState(new Date());
@@ -37,13 +38,11 @@ export function AppointmentForm() {
   }));
 
   const timeSlots = useSelector((state) => state.appointment.freeTime);
-
   const availableTimeSlots = timeSlots.map((item) => dayjs(item).format('h:00 a'));
 
   const onDateChange = (value) => {
     setCalendarValue(value);
-    const isoStringDate = new Date(value.getTime()
-    - (value.getTimezoneOffset() * 60000)).toISOString();
+    const isoStringDate = getDateFormat(value);
     dispatch(getFreeTime({ date: isoStringDate, doctorID: currentDoctor.value }));
   };
 
@@ -51,7 +50,7 @@ export function AppointmentForm() {
     time, visitReason, note,
   }) => {
     const params = {
-      date: calendarValue.toISOString().substring(0, 11).concat(time),
+      date: getDateFormat(calendarValue).substring(0, 11).concat(time),
       reason: visitReason,
       note,
       doctorID: currentDoctor.value,
@@ -66,7 +65,7 @@ export function AppointmentForm() {
           doctorsName: '',
           visitReason: '',
           note: '',
-          date: calendarValue,
+          date: getDateFormat(calendarValue),
           time: '',
         }}
         onSubmit={handleCreateAppointment}
@@ -79,8 +78,7 @@ export function AppointmentForm() {
         }) => (
           <Form>
             <Box>
-              <Container>
-                <TitleWithCircle number="1" text={DICTIONARY.newAppointment.selectDoctor} />
+              <AppointmentContainer index="1" text={DICTIONARY.newAppointment.selectDoctor}>
                 <StyledH4>{DICTIONARY.newAppointmentLabels.occupation}</StyledH4>
                 <Field
                   as={CustomSelect}
@@ -108,8 +106,7 @@ export function AppointmentForm() {
                     setDoctor(e);
                     setFieldValue('doctorsName', e.value);
                     dispatch(getFreeTime({
-                      date: new Date(calendarValue.getTime()
-                      - (calendarValue.getTimezoneOffset() * 60000)).toISOString(),
+                      date: getDateFormat(calendarValue),
                       doctorID: e.value,
                     }));
                   }}
@@ -121,9 +118,9 @@ export function AppointmentForm() {
                 <StyledH4>{DICTIONARY.newAppointmentLabels.note}</StyledH4>
                 <Field as={AppointmentInput} name="note" placeholder={DICTIONARY.newAppointmentPlaseholders.note} />
                 <ErrorMessage component={ErrorMessageText} name="note" />
-              </Container>
-              <Container>
-                <TitleWithCircle number="2" text={DICTIONARY.newAppointment.selectDay} />
+              </AppointmentContainer>
+
+              <AppointmentContainer index="2" text={DICTIONARY.newAppointment.selectDay}>
                 <Calendar
                   name="date"
                   onChange={onDateChange}
@@ -131,9 +128,9 @@ export function AppointmentForm() {
                   minDate={new Date()}
                   formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
                 />
-              </Container>
-              <Container>
-                <TitleWithCircle number="3" text={DICTIONARY.newAppointment.selectTime} />
+              </AppointmentContainer>
+
+              <AppointmentContainer index="3" text={DICTIONARY.newAppointment.selectTime}>
                 <StyledRadiButtonGroup>
                   {AVAILABLE_TIMESLOTS.map((item) => (
                     <Field
@@ -150,7 +147,8 @@ export function AppointmentForm() {
                 </StyledRadiButtonGroup>
                 <ErrorMessage component={ErrorMessageText} name="time" />
                 <SubmitButton onClick={handleSubmit} isDisabled={!isValid || !dirty} type="submit">{DICTIONARY.newAppointment.submit}</SubmitButton>
-              </Container>
+              </AppointmentContainer>
+
             </Box>
           </Form>
         )}

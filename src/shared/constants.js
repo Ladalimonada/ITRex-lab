@@ -30,16 +30,16 @@ export const DOCTORS_SPECIALIZATIONS = [
 ];
 
 export const AVAILABLE_TIMESLOTS = [
-  { label: '8:00 am', value: '08:00:00.000Z' },
-  { label: '9:00 am', value: '09:00:00.000Z' },
-  { label: '10:00 am', value: '10:00:00.000Z' },
-  { label: '11:00 am', value: '11:00:00.000Z' },
-  { label: '12:00 pm', value: '12:00:00.000Z' },
-  { label: '1:00 pm', value: '13:00:00.000Z' },
-  { label: '2:00 pm', value: '14:00:00.000Z' },
-  { label: '3:00 pm', value: '15:00:00.000Z' },
-  { label: '4:00 pm', value: '16:00:00.000Z' },
-  { label: '5:00 pm', value: '17:00:00.000Z' },
-  { label: '6:00 pm', value: '18:00:00.000Z' },
-  { label: '7:00 pm', value: '19:00:00.000Z' },
-  { label: '8:00 pm', value: '20:00:00.000Z' }];
+  { label: '8:00 am', value: '05:00:00.000Z' },
+  { label: '9:00 am', value: '06:00:00.000Z' },
+  { label: '10:00 am', value: '07:00:00.000Z' },
+  { label: '11:00 am', value: '08:00:00.000Z' },
+  { label: '12:00 pm', value: '09:00:00.000Z' },
+  { label: '1:00 pm', value: '10:00:00.000Z' },
+  { label: '2:00 pm', value: '11:00:00.000Z' },
+  { label: '3:00 pm', value: '12:00:00.000Z' },
+  { label: '4:00 pm', value: '13:00:00.000Z' },
+  { label: '5:00 pm', value: '14:00:00.000Z' },
+  { label: '6:00 pm', value: '15:00:00.000Z' },
+  { label: '7:00 pm', value: '16:00:00.000Z' },
+  { label: '8:00 pm', value: '17:00:00.000Z' }];
