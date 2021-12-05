@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, useState } from 'react';
-import * as dayjs from 'dayjs';
+// import * as dayjs from 'dayjs';
+import moment from 'moment';
 import {
   Field, Formik, Form, ErrorMessage,
 } from 'formik';
@@ -38,7 +39,7 @@ export function AppointmentForm({ onSubmit }) {
   }));
 
   const timeSlots = useSelector((state) => state.appointment.freeTime);
-  const availableTimeSlots = timeSlots.map((item) => dayjs(item).format('h:00 a'));
+  const availableTimeSlots = timeSlots.map((item) => moment(item).format('h:00 a'));
 
   const onDateChange = (value) => {
     setCalendarValue(value);
@@ -73,7 +74,7 @@ export function AppointmentForm({ onSubmit }) {
           isValid,
           dirty,
         }) => (
-          <Form>
+          <Form data-testid="form">
             <Box>
               <AppointmentContainer index="1" text={DICTIONARY.newAppointment.selectDoctor}>
                 <StyledH4>{DICTIONARY.newAppointmentLabels.occupation}</StyledH4>
@@ -118,9 +119,9 @@ export function AppointmentForm({ onSubmit }) {
               </AppointmentContainer>
 
               <AppointmentContainer index="2" text={DICTIONARY.newAppointment.selectDay}>
-                <Calendar
+                <Field
+                  as={Calendar}
                   name="date"
-                  data-testid="calendar"
                   onChange={onDateChange}
                   value={calendarValue}
                   minDate={new Date()}
@@ -129,11 +130,10 @@ export function AppointmentForm({ onSubmit }) {
               </AppointmentContainer>
 
               <AppointmentContainer index="3" text={DICTIONARY.newAppointment.selectTime}>
-                <StyledRadiButtonGroup>
+                <StyledRadiButtonGroup data-testid="radio-button">
                   {AVAILABLE_TIMESLOTS.map((item) => (
                     <Field
                       as={RadioButton}
-                      data-testid="radio-button"
                       value={item.value}
                       name="time"
                       label={item.label}
