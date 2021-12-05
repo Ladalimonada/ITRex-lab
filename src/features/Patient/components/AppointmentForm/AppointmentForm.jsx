@@ -17,10 +17,10 @@ import './Calendar.css';
 import { DOCTORS_SPECIALIZATIONS, AVAILABLE_TIMESLOTS } from '../../../../shared/constants';
 import { newAppointmentValidation } from './appointmentValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
-import { createAppointment, getDoctors, getFreeTime } from '../../appointmentSlice';
+import { getDoctors, getFreeTime } from '../../appointmentSlice';
 import { getDateFormat } from '../../../../shared/utils';
 
-export function AppointmentForm() {
+export function AppointmentForm({ onSubmit }) {
   const [calendarValue, setCalendarValue] = useState(new Date());
   const [currentDoctor, setDoctor] = useState('');
 
@@ -46,17 +46,6 @@ export function AppointmentForm() {
     dispatch(getFreeTime({ date: isoStringDate, doctorID: currentDoctor.value }));
   };
 
-  const handleCreateAppointment = async ({
-    time, visitReason, note,
-  }) => {
-    const params = {
-      date: getDateFormat(calendarValue).substring(0, 11).concat(time),
-      reason: visitReason,
-      note,
-      doctorID: currentDoctor.value,
-    };
-    await dispatch(createAppointment(params));
-  };
   return (
     <Container>
       <Formik
@@ -68,11 +57,19 @@ export function AppointmentForm() {
           date: getDateFormat(calendarValue),
           time: '',
         }}
-        onSubmit={handleCreateAppointment}
+        onSubmit={({ visitReason, note, time }) => {
+          const params = {
+            date: getDateFormat(calendarValue).substring(0, 11).concat(time),
+            reason: visitReason,
+            note,
+            doctorID: currentDoctor.value,
+          };
+          onSubmit(params);
+        }}
         validationSchema={newAppointmentValidation}
       >
         {({
-          handleSubmit, setFieldValue,
+          setFieldValue,
           isValid,
           dirty,
         }) => (
@@ -123,6 +120,7 @@ export function AppointmentForm() {
               <AppointmentContainer index="2" text={DICTIONARY.newAppointment.selectDay}>
                 <Calendar
                   name="date"
+                  data-testid="calendar"
                   onChange={onDateChange}
                   value={calendarValue}
                   minDate={new Date()}
@@ -135,6 +133,7 @@ export function AppointmentForm() {
                   {AVAILABLE_TIMESLOTS.map((item) => (
                     <Field
                       as={RadioButton}
+                      data-testid="radio-button"
                       value={item.value}
                       name="time"
                       label={item.label}
@@ -146,7 +145,7 @@ export function AppointmentForm() {
                   ))}
                 </StyledRadiButtonGroup>
                 <ErrorMessage component={ErrorMessageText} name="time" />
-                <SubmitButton onClick={handleSubmit} isDisabled={!isValid || !dirty} type="submit">{DICTIONARY.newAppointment.submit}</SubmitButton>
+                <SubmitButton isDisabled={!isValid || !dirty} type="submit">{DICTIONARY.newAppointment.submit}</SubmitButton>
               </AppointmentContainer>
 
             </Box>

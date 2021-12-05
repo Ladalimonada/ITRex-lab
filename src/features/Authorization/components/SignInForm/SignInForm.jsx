@@ -16,8 +16,8 @@ export function SignInForm({ onSubmit }) {
         email: '',
         password: '',
       }}
-      onSubmit={onSubmit}
       validationSchema={signInValidation}
+      onSubmit={(values) => onSubmit(values)}
     >
       <Form data-testid="signInForm">
         <Field
@@ -36,7 +36,7 @@ export function SignInForm({ onSubmit }) {
         />
         <ErrorMessage component={ErrorMessageText} name="password" />
         <div>
-          <AuthButton marginType>
+          <AuthButton type="submit" marginType>
             {DICTIONARY.authForm.signIn}
           </AuthButton>
         </div>

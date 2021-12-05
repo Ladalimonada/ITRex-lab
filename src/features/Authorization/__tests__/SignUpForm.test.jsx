@@ -5,7 +5,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { SignInForm } from '../components';
+import { SignUpForm } from '../components';
 import { DICTIONARY } from '../../../shared/dictionary';
 
 describe('SignInForm ', () => {
@@ -15,17 +15,23 @@ describe('SignInForm ', () => {
     const handleSubmit = jest.fn((e) => e.preventDefault);
 
     render(
-      <SignInForm onSubmit={handleSubmit} />,
+      <SignUpForm onSubmit={handleSubmit} />,
     );
 
     // Act
+    userEvent.type(screen.getByPlaceholderText(DICTIONARY.authForm.firstName), 'John');
+    userEvent.type(screen.getByPlaceholderText(DICTIONARY.authForm.lastName), 'Dee');
     userEvent.type(screen.getByPlaceholderText(DICTIONARY.authForm.email), 'john.dee@someemail.com');
     userEvent.type(screen.getByPlaceholderText(DICTIONARY.authForm.password), 'Test11234');
+    userEvent.type(screen.getByPlaceholderText(DICTIONARY.authForm.confirmPassword), 'Test11234');
     userEvent.click(screen.getByRole('button'));
 
     // Assert
     await waitFor(() => expect(handleSubmit).toHaveBeenCalledWith({
+      confirmPassword: 'Test11234',
       email: 'john.dee@someemail.com',
+      firstName: 'John',
+      lastName: 'Dee',
       password: 'Test11234',
     }));
   });

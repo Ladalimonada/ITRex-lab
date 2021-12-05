@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Field, Formik, Form, ErrorMessage,
 } from 'formik';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { AuthButton } from '../index';
 import { ErrorMessageText, Input } from '../../../../components';
 import imgName from '../../../../img/user.png';
@@ -12,29 +10,8 @@ import imgLock from '../../../../img/lock.png';
 import imgCheck from '../../../../img/check.png';
 import { signUpValidation } from '../../authValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
-import { createUser, getUserProfile } from '../../authSlice';
-import { ROUTES } from '../../../../shared/constants';
 
-export function SignUpForm() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleReg = async ({
-    firstName, lastName, email, password,
-  }) => {
-    const params = {
-      firstName,
-      lastName,
-      userName: email,
-      password,
-    };
-    await dispatch(createUser(params));
-    await dispatch(getUserProfile());
-    const token = localStorage.getItem('token');
-    if (token) {
-      navigate(`${ROUTES.SIGN_IN}`, { replace: true });
-    }
-  };
+export function SignUpForm({ onSubmit }) {
   return (
     <Formik
       const
@@ -45,12 +22,10 @@ export function SignUpForm() {
         password: '',
         confirmPassword: '',
       }}
-      onSubmit={handleReg}
+      onSubmit={(values) => onSubmit(values)}
       validationSchema={signUpValidation}
     >
-      {({
-        handleSubmit,
-      }) => (
+      {() => (
         <Form>
           <Field
             as={Input}
@@ -90,7 +65,7 @@ export function SignUpForm() {
           />
           <ErrorMessage component={ErrorMessageText} name="confirmPassword" />
           <div>
-            <AuthButton onClick={handleSubmit} type="submit">
+            <AuthButton type="submit">
               {DICTIONARY.authForm.signUp}
             </AuthButton>
           </div>
