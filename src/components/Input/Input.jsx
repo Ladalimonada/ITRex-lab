@@ -13,11 +13,18 @@ export function Input({
 
   return (
     <Wrapper>
-      <StyledInput {...field} {...props} img={img} type={passVisibility && isVisible ? 'password' : 'text'} />
+      <StyledInput
+        {...field}
+        {...props}
+        img={img}
+        type={passVisibility && isVisible ? 'password' : 'text'}
+        data-testid="Input"
+      />
       {isVisible ? (
         <Button
           onClick={changePassVisibility}
           src={passVisibility ? imgEyeSlash : imgEye}
+          data-testid="changePassVisibilityButton"
         />
       ) : null}
     </Wrapper>

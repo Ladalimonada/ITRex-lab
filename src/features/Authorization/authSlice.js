@@ -5,8 +5,9 @@ export const createUser = createAsyncThunk(
   'auth/createUser',
   async (params) => {
     const response = await authService.register(params);
-    if (response.data && response.data.access_token) {
+    if (response.data && response.data.access_token && response.data.refresh_token) {
       localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('refreshToken', response.data.refresh_token);
     }
     return response.data;
   },
@@ -16,8 +17,9 @@ export const logInUser = createAsyncThunk(
   'auth/logIn',
   async (params) => {
     const response = await authService.login(params);
-    if (response.data && response.data.access_token) {
+    if (response.data && response.data.access_token && response.data.refresh_token) {
       localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('refreshToken', response.data.refresh_token);
     }
     return response.data;
   },
