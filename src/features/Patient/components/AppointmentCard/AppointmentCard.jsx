@@ -8,10 +8,11 @@ import imgClock from '../../../../img/clock-three.png';
 import imgReason from '../../../../img/reason.png';
 
 export function AppontmentCard({
-  avatar, firstName, lastName, doctorsSpecialization, description, time,
+  avatar, firstName, lastName, doctorsSpecialization, description, time, dataTestId,
 }) {
   return (
     <StyledAppointmentCard
+      data-testid={dataTestId}
       avatar={avatar}
       firstName={firstName}
       lastName={lastName}

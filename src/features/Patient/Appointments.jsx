@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as dayjs from 'dayjs';
+import moment from 'moment';
 import { ButtonsGroup, Box, Wrapper } from '../../components';
 import { StyledTitle, StyledContainer } from './Patient.styled';
 import { AppontmentCard, AppointmentButton } from './components';
@@ -52,8 +52,9 @@ export function Appointments() {
             lastName={last_name}
             doctorsSpecialization={specialization_name}
             description={note}
-            time={dayjs(visit_date).format('ddd MMM D, YYYY h:mm A')}
+            time={moment(visit_date).format('ddd MMM D, YYYY h:mm A')}
             key={`${visit_date} ${last_name}`}
+            dataTestId="appointmentCard"
           />
         )) : null}
       </Box>
