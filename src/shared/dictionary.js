@@ -46,4 +46,23 @@ export const DICTIONARY = {
     visitReason: 'Indicate the reason of your visit',
     note: 'Leave a note if needed',
   },
+  validationErrors: {
+    occupation: 'Please select the doctors specialization',
+    doctorsName: 'Please select the doctor',
+    visitReason: 'Please indicate the reason of your visit',
+    note: 'Please add the note to the appointment',
+    time: 'Please choose the available time slot',
+    max100Simbols: 'Must be shorter than 100 symbols',
+    emailNotValid: 'The email must be a valid email adress',
+    emailRequired: 'Email is required',
+    passNotValid: 'Password must contain a capital letter and be at least 8 characters long',
+    passRequired: 'Password is required',
+    firstNameNotValid: 'First Name contains unsupported characters',
+    firstNameRequiered: 'First Name is required',
+    lastNameNotValid: 'Last Name contains unsupported characters',
+    lastNameRequiered: 'Last Name is required',
+    passConfirmRequiered: 'Password confirmation is required',
+    passConfirmMatch: 'Passwords don`t match',
+
+  },
 };

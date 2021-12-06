@@ -1,19 +1,20 @@
 import * as Yup from 'yup';
+import { DICTIONARY } from '../../../../shared/dictionary';
 
 export const newAppointmentValidation = Yup.object().shape({
   occupation: Yup.string()
-    .required('Please select the doctors specialization'),
+    .required(DICTIONARY.validationErrors.occupation),
 
   doctorsName: Yup.string()
-    .required('Please select the doctor'),
+    .required(DICTIONARY.validationErrors.doctorsName),
 
   visitReason: Yup.string()
-    .max(100, 'Must be shorter than 100 symbols')
-    .required('Please indicate the reason of your visit'),
+    .max(100, DICTIONARY.validationErrors.max100Simbols)
+    .required(DICTIONARY.validationErrors.visitReason),
 
   note: Yup.string()
-    .required('Please add the note to the appointment'),
+    .required(DICTIONARY.validationErrors.note),
 
   time: Yup.string()
-    .required('Please choose the available time slot'),
+    .required(DICTIONARY.validationErrors.time),
 });

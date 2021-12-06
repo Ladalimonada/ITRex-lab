@@ -1,39 +1,40 @@
 import * as Yup from 'yup';
+import { DICTIONARY } from '../../shared/dictionary';
 
 export const emailValidation = Yup
   .string()
   .matches(
     /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
-    'The email must be a valid email adress',
+    DICTIONARY.validationErrors.emailNotValid,
   )
-  .required('Email is required');
+  .required(DICTIONARY.validationErrors.emailRequired);
 
 export const passwordValidation = Yup
   .string()
-  .required('Password is required')
+  .required(DICTIONARY.validationErrors.passRequired)
   .matches(
     /^(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/,
-    'Password must contain a capital letter and be at least 8 characters long',
+    DICTIONARY.validationErrors.passNotValid,
   );
 
 export const signUpValidation = Yup.object().shape({
   firstName: Yup.string()
-    .required('First Name is required')
+    .required(DICTIONARY.validationErrors.firstNameRequiered)
     .matches(
       /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
-      'First Name contains unsupported characters',
+      DICTIONARY.validationErrors.firstNameNotValid,
     ),
   lastName: Yup.string()
-    .required('Last Name is required')
+    .required(DICTIONARY.validationErrors.lastNameRequiered)
     .matches(
       /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
-      'Last Name contains unsupported characters',
+      DICTIONARY.validationErrors.lastNameNotValid,
     ),
   email: emailValidation,
   password: passwordValidation,
   confirmPassword: Yup.string()
-    .required('Password confirmation is required')
-    .oneOf([Yup.ref('password')], 'Passwords don`t match'),
+    .required(DICTIONARY.validationErrors.passConfirmRequiered)
+    .oneOf([Yup.ref('password')], DICTIONARY.validationErrors.passConfirmMatch),
 });
 
 export const signInValidation = Yup.object().shape({
