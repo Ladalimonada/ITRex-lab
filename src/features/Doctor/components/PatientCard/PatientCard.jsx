@@ -10,10 +10,11 @@ import imgClock from '../../../../img/clock-three.png';
 import imgDesc from '../../../../img/clipboard-blank.png';
 
 export function PatientCard({
-  avatar, firstName, lastName, status, description, time,
+  avatar, firstName, lastName, status, description, time, dataTestId,
 }) {
   return (
     <StyledPatientCard
+      data-testid={dataTestId}
       avatar={avatar}
       firstName={firstName}
       lastName={lastName}

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as dayjs from 'dayjs';
+import moment from 'moment';
 import {
   ButtonsGroup, Box, Wrapper,
 } from '../../components';
@@ -40,8 +40,9 @@ export function Patients() {
             lastName={last_name}
             status={status}
             description={reason}
-            time={dayjs(visit_date).format('ddd MMM D, YYYY h:mm A')}
+            time={moment(visit_date).format('ddd MMM D, YYYY h:mm A')}
             key={visit_date}
+            dataTestId="appointmentCard"
           />
         )) : null}
       </Box>
