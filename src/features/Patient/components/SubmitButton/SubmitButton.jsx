@@ -8,7 +8,7 @@ export function SubmitButton({
     <StyledButton
       type={type}
       onClick={onClick}
-      isDisabled={isDisabled}
+      disabled={isDisabled}
     >
       {children}
     </StyledButton>
