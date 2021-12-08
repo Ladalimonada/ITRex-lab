@@ -36,7 +36,7 @@ export function SignInForm({ onSubmit }) {
         />
         <ErrorMessage component={ErrorMessageText} name="password" />
         <div>
-          <AuthButton type="submit" marginType>
+          <AuthButton type="submit" margin>
             {DICTIONARY.authForm.signIn}
           </AuthButton>
         </div>

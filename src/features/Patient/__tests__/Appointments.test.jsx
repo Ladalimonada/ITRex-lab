@@ -61,7 +61,7 @@ describe('List of Appointments for Patient', () => {
     },
   });
 
-  it('should render appointments with data from store', () => {
+  beforeEach(() => {
     render(
       <Provider store={store}>
         <BrowserRouter>
@@ -69,7 +69,9 @@ describe('List of Appointments for Patient', () => {
         </BrowserRouter>
       </Provider>,
     );
+  });
 
+  it('should render appointments with data from store', () => {
     expect(screen.queryAllByTestId('appointmentCard')).toHaveLength(2);
     expect(screen.getByText(/Bukin/));
     expect(screen.getByText(/Smith/));

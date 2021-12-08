@@ -1,11 +1,8 @@
-// /* eslint-disable camelcase */
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {
-  render, screen,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/dom';
 import '@testing-library/jest-dom';
@@ -65,10 +62,21 @@ describe('SignInForm ', () => {
   });
 
   it('selects are working correct', async () => {
-    await userEvent.selectOptions(selectDoctorOccupation, 'Surgeon');
-    await userEvent.selectOptions(selectDoctor, 'Charles Bukowski');
+    await waitFor(() => {
+      userEvent.selectOptions(selectDoctorOccupation, 'Surgeon');
+      userEvent.selectOptions(selectDoctor, 'Charles Bukowski');
+    });
 
     expect(screen.getByText('Charles Bukowski')).toBeInTheDocument();
+  });
+
+  it('validation errors should appear if inputs were touched without typing any data', async () => {
+    userEvent.click(inputVisitreason);
+    userEvent.click(inputNote);
+    userEvent.click(submitButton);
+
+    expect(await screen.findByText(DICTIONARY.validationErrors.visitReason)).toBeVisible();
+    expect(await screen.findByText(DICTIONARY.validationErrors.note)).toBeVisible();
   });
 
   it('validation errors should appear if inputs were touched without typing any data', async () => {

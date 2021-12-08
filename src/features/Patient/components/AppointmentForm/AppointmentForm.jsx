@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, useState } from 'react';
-// import * as dayjs from 'dayjs';
 import moment from 'moment';
 import {
   Field, Formik, Form, ErrorMessage,

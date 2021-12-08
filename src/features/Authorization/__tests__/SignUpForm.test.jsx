@@ -47,9 +47,56 @@ describe('SignUpForm ', () => {
     }));
   });
 
-  it('form should not submit if the values don`t pass the validation', async () => {
+  it('form should not submit if fisrt name doesn`t pass the validation', async () => {
+    userEvent.type((inputFirstName), 'john');
+    userEvent.type((InputLastName), 'Dee');
+    userEvent.type((inputEmail), 'john.dee@someemail.com');
+    userEvent.type((inputPassword), 'Test11234');
+    userEvent.type((inputConfirmPassword), 'Test11234');
+    userEvent.click(submitButton);
+
+    await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());
+  });
+
+  it('form should not submit if last name doesn`t pass the validation', async () => {
+    userEvent.type((inputFirstName), 'John');
+    userEvent.type((InputLastName), 'dee');
+    userEvent.type((inputEmail), 'john.dee@someemail.com');
+    userEvent.type((inputPassword), 'Test11234');
+    userEvent.type((inputConfirmPassword), 'Test11234');
+    userEvent.click(submitButton);
+
+    await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());
+  });
+
+  it('form should not submit if email doesn`t pass the validation', async () => {
+    userEvent.type((inputFirstName), 'John');
+    userEvent.type((InputLastName), 'Dee');
     userEvent.type((inputEmail), 'john.deesomeemail.com');
-    userEvent.type((inputPassword), '11234');
+    userEvent.type((inputPassword), 'Test11234');
+    userEvent.type((inputConfirmPassword), 'Test11234');
+    userEvent.click(submitButton);
+
+    await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());
+  });
+
+  it('form should not submit if password doesn`t pass the validation', async () => {
+    userEvent.type((inputFirstName), 'John');
+    userEvent.type((InputLastName), 'Dee');
+    userEvent.type((inputEmail), 'john.dee@someemail.com');
+    userEvent.type((inputPassword), 'test11234');
+    userEvent.type((inputConfirmPassword), 'test11234');
+    userEvent.click(submitButton);
+
+    await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());
+  });
+
+  it('form should not submit if passwords don`t match the validation', async () => {
+    userEvent.type((inputFirstName), 'John');
+    userEvent.type((InputLastName), 'Dee');
+    userEvent.type((inputEmail), 'john.deesomeemail.com');
+    userEvent.type((inputPassword), 'Test11234567');
+    userEvent.type((inputConfirmPassword), 'Test11234');
     userEvent.click(submitButton);
 
     await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());

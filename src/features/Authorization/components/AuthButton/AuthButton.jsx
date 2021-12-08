@@ -2,12 +2,13 @@ import React from 'react';
 import { StyledAuthButton } from './AuthButton.styled';
 
 export function AuthButton({
-  onClick, children, marginType,
+  onClick, children, margin, type,
 }) {
   return (
     <StyledAuthButton
-      marginType={marginType}
+      margin={margin}
       onClick={onClick}
+      type={type}
     >
       <span>{children}</span>
     </StyledAuthButton>

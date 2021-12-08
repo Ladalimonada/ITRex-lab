@@ -34,15 +34,23 @@ describe('SignInForm', () => {
     }));
   });
 
-  it('form should not submit if the values don`t pass the validation', async () => {
+  it('form should not submit if email doesn`t pass the validation', async () => {
     userEvent.type((inputEmail), 'john.deesomeemail.com');
+    userEvent.type((inputPassword), 'Test11234');
+    userEvent.click(submitButton);
+
+    await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());
+  });
+
+  it('form should not submit if password doesn`t pass the validation', async () => {
+    userEvent.type((inputEmail), 'john.dee@someemail.com');
     userEvent.type((inputPassword), '11234');
     userEvent.click(submitButton);
 
     await waitFor(() => expect(handleSubmit).not.toHaveBeenCalled());
   });
 
-  it('validation errors should appears and form should not be submitted if user click on Submit button without providing any data', async () => {
+  it('validation errors should appear and form should not be submitted if user click on Submit button without providing any data', async () => {
     userEvent.click(submitButton);
 
     expect(await screen.findByText(DICTIONARY.validationErrors.emailRequired)).toBeVisible();
@@ -53,7 +61,7 @@ describe('SignInForm', () => {
   it('validation errors should appear if inputs were touched without typing any data', async () => {
     userEvent.click(inputEmail);
     userEvent.click(inputPassword);
-    userEvent.click(submitButton);
+    userEvent.click(inputEmail);
 
     expect(await screen.findByText(DICTIONARY.validationErrors.emailRequired)).toBeVisible();
     expect(await screen.findByText(DICTIONARY.validationErrors.passRequired)).toBeVisible();
