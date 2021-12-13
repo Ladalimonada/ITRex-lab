@@ -17,6 +17,11 @@
     display: flex;
 }
 
+.sweet-loading {
+  margin: 0 auto;
+  margin-top: 50vh;
+}
+
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, em, img, small, strong, sub, sup, b, u, i, ol, ul, li,
 fieldset, form, label, article, aside, canvas, details, footer, header, 
