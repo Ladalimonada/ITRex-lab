@@ -1,5 +1,5 @@
 import React from 'react';
-import confirmedIndicator from '../../../../img/indicator.svg';
+import confirmedIndicator from '../../../../img/indicator-green.svg';
 import waitingIndicator from '../../../../img/indicator-waiting.svg';
 import canceledIndicator from '../../../../img/indicator-canceled.svg';
 import { StyledIndicatorContainer } from './PatientCardIndicator.styled';

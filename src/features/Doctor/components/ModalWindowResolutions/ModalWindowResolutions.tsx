@@ -1,17 +1,18 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { ModalWindowProps, FormValues } from './ModalWindow.types';
+import { ModalWindowProps } from './ModalWindowResolutions.types';
 import {
   ModalContainer, ModalBody, ModalTitle, ModalUserNameContainer,
   ModalLabel, ModalTextArea, ModalFooter,
   CancelButton, SaveButton, CreateButton, StyledDialog,
-} from './ModalWindow.styled';
+} from './ModalWindowResolutions.styled';
 import { ErrorMessageText } from '../../../../components';
 import userImg from '../../../../img//user.png';
 import { DICTIONARY } from '../../../../shared/dictionary';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
-import { updateAppointmentValidation } from '../../docktorValidation';
+import { updateResolutionValidation } from '../../docktorValidation';
+import { FormValues } from './ModalWindowResolutions.types';
 
-export const ModalWindow = ({ typeofModal, onSubmit }: ModalWindowProps) => {
+export const ModalWindowResolutions = ({ typeofModal, onSubmit }: ModalWindowProps) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -28,7 +29,7 @@ export const ModalWindow = ({ typeofModal, onSubmit }: ModalWindowProps) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => onSubmit(values, id.substring(3))}
-        validationSchema={updateAppointmentValidation}
+        validationSchema={updateResolutionValidation}
       >
         <Form>
           <ModalContainer>
@@ -40,7 +41,7 @@ export const ModalWindow = ({ typeofModal, onSubmit }: ModalWindowProps) => {
                 <img src={userImg} alt="user" />
                 {/* <ModalUserName>{userName}</ModalUserName> */}
               </ModalUserNameContainer>
-              <ModalLabel>{typeofModal === 'updateAppointment' ? DICTIONARY.modalWindow.appointment : DICTIONARY.modalWindow.resolution}</ModalLabel>
+              <ModalLabel>{DICTIONARY.modalWindow.resolution}</ModalLabel>
               <Field as={ModalTextArea} name="resolution"></Field>
               <ErrorMessage component={ErrorMessageText} name="resolution" />
             </ModalBody>

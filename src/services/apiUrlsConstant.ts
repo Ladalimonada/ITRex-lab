@@ -13,7 +13,7 @@ export const AUTHSERVICE = {
 };
 
 export const DOCTORSERVICE = {
-  patients: '/appointments/doctor/me/?offset=0&limit=10000',
+  patients: '/appointments/doctor/me?offset=0&limit=200&sortBy=dateSort&order=Asc&dateStatus=Upcoming',
   deleteAppointment: '/appointments/',
   createResolution: '/resolutions',
   updateResolution: '/resolutions/',

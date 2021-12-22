@@ -80,7 +80,7 @@ export const Table = ({ data, type }: TableProps) => {
           nextAppointmentDate={moment(next_appointment_date).format('L')}
           actions={<CustomMenu menuItems={
                 [
-                  { title: DICTIONARY.menu.editResolution, path: `${ROUTES.UPDATE_RESOLUTION}${id}`, onClick: () => {setTimeout(dispatch(fetchResolutions), 1000);} },
+                  { title: DICTIONARY.menu.editResolution, path: `${ROUTES.UPDATE_RESOLUTION}${id}`, onClick: () => {dispatch(fetchResolutions);} },
                   { title: DICTIONARY.menu.delete, onClick: () => { dispatch(deleteResolution(id)); dispatch(fetchResolutions); } },
                 ]
               } />}

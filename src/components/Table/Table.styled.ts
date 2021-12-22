@@ -8,11 +8,10 @@ span {
    position: relative; 
 }
 span::after{
-    ${((props) => (props.sortDirection === 'descending' ? `content:${angleUp}`  : `content:${angleDown}` ))};
-    /* content: ${((props) => (props.sortDirection === 'descending' ? angleUp : angleDown ))} ; */
+    content: url(${(props) => (props.sortDirection === 'ascending' ? angleUp : angleDown)});
     position: absolute;
     top: 0;
-    right: -40px;
+    right: -2em;
 }`;
 
 export const StyledTable = styled.table`

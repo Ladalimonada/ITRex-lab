@@ -1,4 +1,4 @@
-import { ModalWindow } from './components';
+import { ModalWindowResolutions, ModalWindowAppointments } from './components';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from '../../shared/hooks';
 import { ROUTES } from '../../shared/constants';
@@ -21,11 +21,11 @@ export const DoctorModalWindow = () => {
 
   const getModalWindow = (pathname:string) => {
     if (pathname.includes(ROUTES.CREATE_RESOLUTION)) {
-      return <ModalWindow typeofModal={'createResolution'}  onSubmit={handleCreateResolution}></ModalWindow>;
+      return <ModalWindowResolutions typeofModal={'createResolution'}  onSubmit={handleCreateResolution}></ModalWindowResolutions>;
     } if (pathname.includes(ROUTES.UPDATE_RESOLUTION)) {
-      return <ModalWindow typeofModal={'updateResolution'}  onSubmit={handleUpdateResolution}></ModalWindow>;
+      return <ModalWindowResolutions typeofModal={'updateResolution'}  onSubmit={handleUpdateResolution}></ModalWindowResolutions>;
     } if (pathname.includes(ROUTES.UPDATE_APPOINTMENT)) {
-      return <ModalWindow typeofModal={'updateAppointment'}  onSubmit={handleUpdateAppointment}></ModalWindow>;
+      return <ModalWindowAppointments onSubmit={handleUpdateAppointment}></ModalWindowAppointments>;
     }
   };
 

@@ -53,8 +53,10 @@ export const CALENDAR_DAY_FORMAT = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 export const DATE_FORMAT = 'ddd MMM D, YYYY h:mm A';
 
-export const RESOLUTION_STATUSES = {
-  WAITING: 'waiting',
-  CONFIMED: 'confirm',
-  CANCELEF: 'cancel',
-};
+export const APPOINTMENT_STATUSES = [
+  { value: 'waiting', label: 'Wait' },
+  { value: 'confirmed', label: 'Confirm' },
+  { value: 'canceled', label: 'Cancel' } ];
+
+
+

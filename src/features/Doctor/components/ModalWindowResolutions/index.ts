@@ -1,0 +1,1 @@
+export { ModalWindowResolutions } from './ModalWindowResolutions';

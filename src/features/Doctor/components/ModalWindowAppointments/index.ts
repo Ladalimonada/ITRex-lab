@@ -1,0 +1,1 @@
+export { ModalWindowAppointments } from './ModalWindowAppointments';

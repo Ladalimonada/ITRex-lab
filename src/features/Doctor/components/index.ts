@@ -1,3 +1,4 @@
 export { PatientCard } from './PatientCard';
-export { ModalWindow } from './ModalWindow';
+export { ModalWindowResolutions } from './ModalWindowResolutions';
 export { PatientCardIndicator } from './PatientCardIndicator';
+export { ModalWindowAppointments } from './ModalWindowAppointments';
