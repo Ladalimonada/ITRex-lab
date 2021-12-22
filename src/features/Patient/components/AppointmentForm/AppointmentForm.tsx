@@ -14,7 +14,7 @@ import { transformToISOString } from '../../../../shared/utils';
 import { doctorsList, timeSlotsList } from '../../redux/patientSelectors';
 import { AppointmentFormProps, InitialValuesType } from './AppointmentForm.types';
 
-export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
+export const AppointmentForm = function ({ onSubmit }: AppointmentFormProps) {
 
   const dispatch = useAppDispatch();
 
@@ -30,9 +30,10 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
   }));
 
   const timeSlots = useAppSelector(timeSlotsList);
-  const availableTimeSlots = timeSlots.map((item) => moment(item).format('HH:mm:ss.SSS[Z]'));
-
-  const initialValues:InitialValuesType  = {
+  const availableTimeSlots = timeSlots.map((item) => moment(item).subtract(3, 'hours').format('HH:mm:ss.SSS[Z]'));
+  console.log(availableTimeSlots);
+  console.log(timeSlots);
+  const initialValues: InitialValuesType = {
     occupation: '',
     doctorsName: null,
     visitReason: '',
@@ -45,7 +46,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
     <Container>
       <Formik
         initialValues={initialValues}
-        onSubmit={({ visitReason, note, time, date, doctorsName }) => {
+        onSubmit={({ visitReason, note, time, date, doctorsName }, { resetForm }) => {
           const params = {
             date: transformToISOString(date).substring(0, 11).concat(time),
             reason: visitReason,
@@ -53,6 +54,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
             doctorID: doctorsName.value,
           };
           onSubmit(params);
+          resetForm();
         }}
         validationSchema={newAppointmentValidation}
       >
@@ -72,7 +74,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                   placeholder={DICTIONARY.newAppointmentPlaseholders.occupation}
                   options={optionsSpecialization}
                   value={values.occupation}
-                  onChange={(value:{ value: string, label: string }) => {
+                  onChange={(value: { value: string, label: string }) => {
                     setFieldValue('occupation', value);
                     setFieldValue('doctorsName', null);
                     dispatch(fetchDoctors(value.value));
@@ -86,7 +88,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                   placeholder={DICTIONARY.newAppointmentPlaseholders.doctorsName}
                   options={doctorsOptions}
                   value={values.doctorsName}
-                  onChange={(value:{ value: string, label: string }) => {
+                  onChange={(value: { value: string, label: string }) => {
                     setFieldValue('doctorsName', value);
                     dispatch(fetchFreeTime({
                       date: transformToISOString(values.date),
@@ -107,16 +109,16 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                 <Field
                   as={Calendar}
                   name="date"
-                  onChange={(value:Date)=>{
+                  onChange={(value: Date) => {
                     setFieldValue('date', value);
-                    if (values.doctorsName){
+                    if (values.doctorsName) {
                       dispatch(fetchFreeTime({ date: transformToISOString(value), doctorID: values.doctorsName.value }));
-                    } 
+                    }
                   }
                   }
                   value={values.date ? new Date(values.date) : new Date()}
                   minDate={new Date()}
-                  formatShortWeekday={(locale:string, date:Date) => CALENDAR_DAY_FORMAT[date.getDay()]}
+                  formatShortWeekday={(locale: string, date: Date) => CALENDAR_DAY_FORMAT[date.getDay()]}
                 />
               </AppointmentContainer>
 
@@ -129,8 +131,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                       value={item.value}
                       label={item.label}
                       key={item.label}
-                      isDisabled={values.doctorsName ? 
-                        (!availableTimeSlots.find((timeItem) => timeItem === item.value)) : true}
+                      isDisabled={values.doctorsName && !availableTimeSlots.find((timeItem) => timeItem === item.value)}
                     />
                   ))}
                 </StyledRadiButtonGroup>

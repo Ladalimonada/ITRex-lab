@@ -10,7 +10,7 @@ import { fetchAppointments, fetchResolutions } from './redux/patientSlice';
 import { ROUTES } from '../../shared/constants';
 import { patientAppointments, patientResolutions } from './redux/patientSelectors';
 import { DATE_FORMAT } from '../../shared/constants';
-import { Table } from '../../../src/components';
+import { PatientTable } from './components';
 
 export const PatientsPage = () => {
   const dispatch = useAppDispatch();
@@ -63,7 +63,7 @@ export const PatientsPage = () => {
       </StyledBox>
       </> : <>
       <StyledTitle>{DICTIONARY.pageName.resolutions}</StyledTitle>
-      <Table type='patient' data={resolutions}></Table>
+      <PatientTable data={resolutions}></PatientTable>
       </>}
       
     </Wrapper>

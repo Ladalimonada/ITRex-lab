@@ -14,13 +14,13 @@ import { ROUTES } from '../../shared/constants';
 export const DoctorsPage = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-
+  const appointments = useAppSelector(doctorAppointments);
   useEffect(() => {
     dispatch(fetchAppointments());
     dispatch(fetchResolutions());
   }, [dispatch]);
 
-  const appointments = useAppSelector(doctorAppointments);
+
   const resolutions = useAppSelector(doctorResolutions);
 
   return (
@@ -30,7 +30,7 @@ export const DoctorsPage = () => {
           { title: DICTIONARY.pageName.patients, path: ROUTES.PATIENTS },
           { title: DICTIONARY.pageName.resolutions, path: ROUTES.DOCTOR_RESOLUTIONS  }]}
       />
-      {location.pathname === ROUTES.PATIENTS ? 
+      {location.pathname.includes(ROUTES.PATIENTS) ? 
       <>
       <StyledTitle>{DICTIONARY.pageName.myPatients}</StyledTitle>
       <StyledBox>

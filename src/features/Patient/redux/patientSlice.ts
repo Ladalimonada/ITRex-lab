@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
 import { appointmentService } from '../../../services/patient.service';
 import { successNotify, errorNotify } from '../../../components';
 import { DICTIONARY } from '../../../shared/dictionary';
@@ -45,7 +45,7 @@ export const fetchResolutions = createAsyncThunk(
   },
 );
 
-const initialState:InitialStateTypes = {
+const initialState: InitialStateTypes = {
   doctors: [],
   freeTime: [],
   appointment: {},
@@ -60,73 +60,41 @@ const appointmentSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchDoctors.pending, (state) => ({ ...state, loading: true, error: null }));
+
     builder.addCase(fetchDoctors.fulfilled, (state, action) => ({
       ...state, doctors: action.payload, loading: false, error: null,
-    }),
-    );
-    builder.addCase(
-      fetchDoctors.rejected,
-      (state, action) => ({ ...state, error: action.error.message, loading: false }),
-    );
+    }));
 
-    builder.addCase(fetchFreeTime.pending, (state) => ({ ...state, loading: true, error: null }));
     builder.addCase(
       fetchFreeTime.fulfilled,
       (state, action) => ({
         ...state, freeTime: action.payload, loading: false, error: null,
-      }),
+      }));
 
-    );
-    builder.addCase(
-      fetchFreeTime.rejected,
-      (state, action) => ({ ...state, error: action.error.message, loading: false }),
-    );
-
-    builder.addCase(
-      createAppointment.pending,
-      (state) => ({ ...state, loading: true, error: null }),
-    );
     builder.addCase(
       createAppointment.fulfilled,
       (state, action) => ((successNotify(DICTIONARY.toastMessages.createAppointmentSucces),
-      { ...state, appointment: action.payload, loading: false, error: null,
-      })),
-    );
-    builder.addCase(
-      createAppointment.rejected,
-      (state, action) => ((errorNotify(DICTIONARY.toastMessages.commonError),
-      { ...state, error: action.error.message, loading: false })),
-    );
+      {
+        ...state, appointment: action.payload, loading: false, error: null,
+      })));
 
-    builder.addCase(
-      fetchAppointments.pending,
-      (state) => ({ ...state, loading: true, error: null }),
-    );
     builder.addCase(
       fetchAppointments.fulfilled,
       (state, action) => ({
         ...state, patientAppointments: action.payload, loading: false, error: null,
-      }),
-    );
-    builder.addCase(
-      fetchAppointments.rejected, 
-      (state, action) => ({ ...state, error: action.error.message, loading: false }),
-    );
-    builder.addCase(
-      fetchResolutions.pending,
-      (state) => ({ ...state, loading: true, error: null }),
-    );
+      }));
+
     builder.addCase(
       fetchResolutions.fulfilled,
       (state, action) => ({
         ...state, patientResolutions: action.payload, loading: false, error: null,
-      }),
+      }));
+
+    builder.addMatcher(isAnyOf(fetchResolutions.rejected, fetchAppointments.rejected, createAppointment.rejected, fetchFreeTime.rejected, fetchDoctors.rejected),
+      (state, action) => ((errorNotify(DICTIONARY.toastMessages.commonError), { ...state, error: action.error.message, loading: false })),
     );
-    builder.addCase(
-      fetchResolutions.rejected, 
-      (state, action) => ({ ...state, error: action.error.message, loading: false }),
-    );
+    builder.addMatcher(isAnyOf(fetchResolutions.pending, fetchAppointments.pending, createAppointment.pending, fetchFreeTime.pending, fetchDoctors.pending),
+      (state) => ({ ...state, loading: true, error: null }));
   },
 
 });

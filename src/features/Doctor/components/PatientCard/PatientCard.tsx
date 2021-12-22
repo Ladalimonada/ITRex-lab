@@ -18,6 +18,10 @@ export const PatientCard = ({
 }: PatiendCardType) => {
   const dispatch = useAppDispatch();
 
+  const handleOnClick = (appointentId: string): void => {
+    dispatch(deleteAppointment(appointentId));
+  };
+
   return (
     <StyledPatientCard
       data-testid={dataTestId}
@@ -38,7 +42,7 @@ export const PatientCard = ({
             menuItems={[
               { title: DICTIONARY.menu.createResolution, path: `${ROUTES.CREATE_RESOLUTION}${id}` },
               { title: DICTIONARY.menu.editAppointment, path: `${ROUTES.UPDATE_APPOINTMENT}${id}` },
-              { title: DICTIONARY.menu.delete, isColored:true, onClick: () => { dispatch(deleteAppointment(id));} },
+              { title: DICTIONARY.menu.delete, isColored:true, onClick: () => handleOnClick(id) },
             ]}
           />
         </StyledPatientCardHeaderBox>

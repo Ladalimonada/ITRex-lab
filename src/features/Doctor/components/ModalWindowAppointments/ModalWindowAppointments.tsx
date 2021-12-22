@@ -1,12 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ModalWindowProps, FormValues } from './ModalWindowAppointment.types';
 import {
-  ModalContainer, ModalBody, ModalTitle, ModalUserNameContainer,
-  ModalLabel, ModalFooter,
+  ModalContainer, ModalBody, ModalTitle, ModalLabel, ModalFooter,
   CancelButton, SaveButton, StyledDialog,
 } from '../ModalWindowResolutions/ModalWindowResolutions.styled';
 import { ErrorMessageText, CustomSelect } from '../../../../components';
-import userImg from '../../../../img//user.png';
 import { DICTIONARY } from '../../../../shared/dictionary';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { updateAppointmentValidation } from '../../docktorValidation';
@@ -46,10 +44,6 @@ export const ModalWindowAppointments = ({ onSubmit }: ModalWindowProps) => {
                 <ModalTitle>
                   {DICTIONARY.modalWindow.updateAppointment}
                 </ModalTitle>
-                <ModalUserNameContainer>
-                  <img src={userImg} alt="user" />
-                  {/* <ModalUserName>{userName}</ModalUserName> */}
-                </ModalUserNameContainer>
                 <ModalLabel>{DICTIONARY.modalWindow.resolution}</ModalLabel>
                 <Field as={CustomSelect}
                   name="appointment"

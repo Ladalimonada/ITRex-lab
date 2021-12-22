@@ -1,12 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ModalWindowProps } from './ModalWindowResolutions.types';
 import {
-  ModalContainer, ModalBody, ModalTitle, ModalUserNameContainer,
-  ModalLabel, ModalTextArea, ModalFooter,
+  ModalContainer, ModalBody, ModalTitle, ModalLabel, ModalTextArea, ModalFooter,
   CancelButton, SaveButton, CreateButton, StyledDialog,
 } from './ModalWindowResolutions.styled';
 import { ErrorMessageText } from '../../../../components';
-import userImg from '../../../../img//user.png';
 import { DICTIONARY } from '../../../../shared/dictionary';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { updateResolutionValidation } from '../../docktorValidation';
@@ -37,10 +35,6 @@ export const ModalWindowResolutions = ({ typeofModal, onSubmit }: ModalWindowPro
               <ModalTitle>
                 {DICTIONARY.modalWindow[typeofModal]}
               </ModalTitle>
-              <ModalUserNameContainer>
-                <img src={userImg} alt="user" />
-                {/* <ModalUserName>{userName}</ModalUserName> */}
-              </ModalUserNameContainer>
               <ModalLabel>{DICTIONARY.modalWindow.resolution}</ModalLabel>
               <Field as={ModalTextArea} name="resolution"></Field>
               <ErrorMessage component={ErrorMessageText} name="resolution" />

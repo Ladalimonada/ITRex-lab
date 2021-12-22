@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import { TableColumn } from '../index';
-import { TableProps } from './Table.types';
-import { StyledTable, StyledTableHead, StyledButton, StyledRow } from './Table.styled';
-import { DICTIONARY } from '../../shared/dictionary';
-import { ROUTES } from '../../shared/constants';
-import { CustomMenu } from 'components/CustomMenu';
-import { deleteResolution } from '../../features/Doctor/redux/doctorSlice';
-import { useAppDispatch } from '../../shared/hooks';
+import { PatientTableProps } from './PatientTable.types';
+import { StyledTable, StyledTableHead, StyledButton, StyledRow } from './PatientTable.styled';
 
+export const PatientTable = ({ data }: PatientTableProps) => {
 
-export const Table = ({ data, type }: TableProps) => {
-  const dispatch = useAppDispatch();
   const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'ascending' });
 
   const sortedData = [...data];
@@ -65,27 +58,20 @@ export const Table = ({ data, type }: TableProps) => {
             sortDirection={getSortConfig('next_appointment_date')}><span>
               Next Visit</span>
           </StyledButton></th>
-          {type === 'doctor' ? <th>Actions</th> : null}
         </StyledRow>
       </StyledTableHead>
       <tbody>
-      {sortedData ? sortedData.map(({ patient: { first_name, last_name },
-        id, resolution, visit_date, next_appointment_date }) => (<TableColumn
-          id={id}
-          key={id}
-          firstName={first_name}
-          lastName={last_name}
-          resolution={resolution}
-          visitDate={moment(visit_date).format('L')}
-          nextAppointmentDate={moment(next_appointment_date).format('L')}
-          actions={<CustomMenu menuItems={
-                [
-                  { title: DICTIONARY.menu.editResolution, path: `${ROUTES.UPDATE_RESOLUTION}${id}` },
-                  { title: DICTIONARY.menu.delete, onClick: () => { dispatch(deleteResolution(id)); console.log(id); } },
-                ]
-              } />}
-        />
-      )) : null}
+        {sortedData ? sortedData.map(({ doctor: { first_name, last_name },
+          id, resolution, visit_date, next_appointment_date }) => (<StyledRow
+            id={id}
+            key={id}>
+            <td>{first_name}</td>
+            <td>{last_name}</td>
+            <td>{resolution}</td>
+            <td>{moment(visit_date).format('L')}</td>
+            <td>{moment(next_appointment_date).format('L')}</td>
+          </StyledRow>
+        )) : null}
       </tbody>
     </StyledTable>
   );
