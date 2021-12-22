@@ -6,7 +6,7 @@ import { Title } from '../../components';
 import {
   StyledWrapper, StyledContainer, StyledText, AuthFooter, StyledLink,
 } from './Authorization.styled';
-import { createUser, getUserProfile } from './redux/authSlice';
+import { createUser, fetchUserProfile } from './redux/authSlice';
 import { DICTIONARY } from '../../shared/dictionary';
 import { ROUTES } from '../../shared/constants';
 
@@ -28,7 +28,7 @@ export const SignUp = () => {
       password,
     };
     await dispatch(createUser(params));
-    await dispatch(getUserProfile());
+    await dispatch(fetchUserProfile());
     const token = localStorage.getItem('token');
     if (token) {
       navigate(`${ROUTES.SIGN_IN}`, { replace: true });

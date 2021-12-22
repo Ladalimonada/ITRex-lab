@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 import thunk from 'redux-thunk';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { Patients } from '../Patients';
+import { DoctorsPage } from '../Doctor';
 
 describe('List of Appointments for Doctor', () => {
   const middlewares = [thunk];
@@ -58,7 +58,7 @@ describe('List of Appointments for Doctor', () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <Patients />
+          <DoctorsPage />
         </BrowserRouter>
       </Provider>,
     );

@@ -1,0 +1,1 @@
+export { PatientCardIndicator } from './PatientCardIndicator';

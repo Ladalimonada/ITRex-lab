@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Field, Formik, Form, ErrorMessage,
-} from 'formik';
+import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageText, Input, Button } from '../../../../components';
 import imgName from '../../../../img/user.png';
 import imgEmail from '../../../../img/email.png';
@@ -9,25 +7,9 @@ import imgLock from '../../../../img/lock.png';
 import imgCheck from '../../../../img/check.png';
 import { signUpValidation } from '../../authValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
+import { FormValues, SignUpFormProps } from './SignUpForm.types';
 
-interface FormValues {
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  confirmPassword: string,
-}
-
-type SignUpFormProps = {
-  onSubmit: (values:{ 
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    confirmPassword: string, }) => void
-};
-
-const initialValues: FormValues = {
+const initialValues:FormValues = {
   firstName: '',
   lastName: '',
   email: '',

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { RadioButtonProps } from './RadioButton';
+import { RadioButtonProps } from './RadioButton.types';
 
 export const StyledLabel = styled.label<RadioButtonProps>`
 position: relative;

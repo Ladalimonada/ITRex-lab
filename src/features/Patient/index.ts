@@ -1,2 +1,2 @@
-export { Appointments } from './Appointments';
+export { PatientsPage } from './Patient';
 export { CreateAppointment } from './CreateAppointment';

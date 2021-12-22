@@ -6,14 +6,11 @@ import {
 } from './AppointmentCard.styled';
 import imgClock from '../../../../img/clock-three.png';
 import imgReason from '../../../../img/reason.png';
-
-export interface AppontmentCardType {
-  [name: string]: string,
-}
+import { AppointmentCardType } from './AppointmentCard.types';
 
 export const AppontmentCard = ({
   avatar, firstName, lastName, doctorsSpecialization, description, time, dataTestId,
-}:AppontmentCardType) => {
+}:AppointmentCardType) => {
   return (
     <StyledAppointmentCard
       data-testid={dataTestId}
@@ -27,7 +24,7 @@ export const AppontmentCard = ({
             {`${firstName} ${lastName}`}
           </h3>
           <p>
-            {doctorsSpecialization}
+            {doctorsSpecialization.toUpperCase}
           </p>
         </StyledAppointmentHeaderContainer>
       </StyledAppointmentHeader>

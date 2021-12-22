@@ -1,13 +1,6 @@
 import React from 'react';
+import { ButtonProps } from './Button.types';
 import { StyledButton } from './Button.styled';
-
-export type ButtonProps = {
-  children?: JSX.Element | string,
-  onClick?: React.MouseEventHandler<HTMLButtonElement>,
-  margin?: boolean,
-  isDisabled?: boolean,
-  type?: 'button' | 'submit' | 'reset' | undefined,
-};
 
 export const Button = ({
   onClick, children, margin, type,

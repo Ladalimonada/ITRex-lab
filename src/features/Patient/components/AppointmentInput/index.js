@@ -1,1 +1,0 @@
-export { AppointmentInput } from './AppointmentInput';

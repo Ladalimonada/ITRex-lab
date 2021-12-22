@@ -1,1 +1,2 @@
-export { CustomToast } from './ToastContainer';
+export { CustomToastContainer } from './CustomToastContainer';
+export { errorNotify, successNotify } from './Toasts';

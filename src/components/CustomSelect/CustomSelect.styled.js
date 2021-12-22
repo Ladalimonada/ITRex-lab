@@ -1,7 +1,5 @@
-
-
 export const customStyles = {
-  container: (provided:{}) => ({
+  container: (provided) => ({
     ...provided,
     width: '27vw',
     margin: '16px 0 0 0',
@@ -10,11 +8,11 @@ export const customStyles = {
       width: '100%',
     },
   }),
-  valueContainer: (provided:{}) => ({
+  valueContainer: (provided) => ({
     ...provided,
     padding: '0',
   }),
-  control: (provided:{}, { menuIsOpen }:{ menuIsOpen:boolean } ) => ({
+  control: (provided, state) => ({
     ...provided,
     height: '54px',
     position: 'relative',
@@ -25,41 +23,41 @@ export const customStyles = {
     backgroundColor: 'white',
     borderRadius: '8px',
     boxShadow: 'none',
-    border: `1px solid ${menuIsOpen ? '#7297FF' : '#DCE0EC'}`,
+    border: state.selectProps.menuIsOpen ? '1px solid #7297FF' : '1px solid #DCE0EC',
     '&:hover': {
       border: '1px solid #7297FF',
     },
   }),
-  dropdownIndicator: (provided:{}, { menuIsOpen }:{ menuIsOpen:boolean }) => ({
+  dropdownIndicator: (provided, state) => ({
     ...provided,
-    color: menuIsOpen ? '#7297FF' : '#DCE0EC',
-    transform: menuIsOpen ? 'rotate(180deg)' : null,
+    color: state.selectProps.menuIsOpen ? '#7297FF' : '#DCE0EC',
+    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
     transition: 'all .4s ease-out',
     '&:hover': {
       color: '#7297FF',
     },
   }),
-  input: (provided:{}) => ({
+  input: (provided) => ({
     ...provided,
     color: 'black',
     marginLeft: '24px',
   }),
-  option: (provided:{}, { isFocused, isActive }:{ isFocused:boolean, isActive:boolean }) => ({
+  option: (provided, { isFocused, isActive }) => ({
     ...provided,
     color: 'black',
     paddingLeft: '24px',
     backgroundColor: isFocused || isActive ? '#F9FAFF' : 'white',
   }),
-  indicatorSeparator: (provided:{}) => ({
+  indicatorSeparator: (provided) => ({
     ...provided,
     display: 'none',
   }),
-  placeholder: (provided:{}) => ({
+  placeholder: (provided) => ({
     ...provided,
     color: '#A1ABC9',
     marginLeft: '24px',
   }),
-  singleValue: (provided:{}) => ({
+  singleValue: (provided) => ({
     ...provided,
     marginLeft: '24px',
   }),

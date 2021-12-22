@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InputProps } from './Input';
+import { InputProps } from './Input.types';
 
 export const Wrapper = styled.div`
 position: relative;

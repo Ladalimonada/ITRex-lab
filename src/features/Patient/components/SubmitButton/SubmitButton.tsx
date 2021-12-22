@@ -1,10 +1,6 @@
 import React from 'react';
 import { StyledButton } from './SubmitButton.styled';
-
-export type SubmitButtonProps = {
-  children: JSX.Element | String,
-  isDisabled?: boolean
-};
+import { SubmitButtonProps } from './SubmitButton.types';
 
 export function SubmitButton({
   children, isDisabled,

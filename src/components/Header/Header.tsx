@@ -1,20 +1,14 @@
 import React from 'react';
 import {
-  StyledHeader, StyledHeaderContainer, StyledNameContainer, StyledText,
+  StyledHeader, StyledHeaderContainer, StyledNameContainer, StyledText, StyledDiv,
 } from './Header.styled';
+import { HeaderProps } from './Header.types';
 import logo from '../../img/logo.png';
-import { Title } from '../Title/Title';
+import { Title } from '../Title';
 
-
-export type HeaderProps = {
-  avatar: string,
-  userName: string
-  role: string
-};
-
-export function Header({
+export const Header = ({
   avatar, userName, role,
-}:HeaderProps) {
+}:HeaderProps) => {
   return (
     <StyledHeader>
       <div>
@@ -25,10 +19,11 @@ export function Header({
           <Title>{userName}</Title>
           <StyledText>{role}</StyledText>
         </StyledNameContainer>
-        <div>
+        <StyledDiv>
+          <div></div>
           <img alt="avatar" width="40" height="40" src={avatar} />
-        </div>
+        </StyledDiv>
       </StyledHeaderContainer>
     </StyledHeader>
   );
-}
+};

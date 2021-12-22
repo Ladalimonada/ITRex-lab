@@ -3,23 +3,16 @@ import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../../shared/hooks';
 import Calendar from 'react-calendar';
 import { Container, StyledRadiButtonGroup, StyledH4, Box } from './AppointmentForm.styled';
-import { RadioButton, AppointmentInput, AppointmentContainer, SubmitButton } from '../index';
+import { RadioButton, PatientInput, AppointmentContainer, SubmitButton } from '../index';
 import { CustomSelect, ErrorMessageText } from '../../../../components';
 import './Calendar.css';
 import { DOCTORS_SPECIALIZATIONS, AVAILABLE_TIMESLOTS, CALENDAR_DAY_FORMAT } from '../../../../shared/constants';
 import { newAppointmentValidation } from './appointmentValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
-import { getDoctors, getFreeTime } from '../../redux/appointmentSlice';
+import { fetchDoctors, fetchFreeTime } from '../../redux/patientSlice';
 import { transformToISOString } from '../../../../shared/utils';
 import { doctorsList, timeSlotsList } from '../../redux/patientSelectors';
-
-
-type AppointmentFormProps = {
-  onSubmit: ( values:{ 
-    note: string,
-    date: string,
-  } ) => void
-};
+import { AppointmentFormProps, InitialValuesType } from './AppointmentForm.types';
 
 export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
 
@@ -38,18 +31,6 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
 
   const timeSlots = useAppSelector(timeSlotsList);
   const availableTimeSlots = timeSlots.map((item) => moment(item).format('HH:mm:ss.SSS[Z]'));
-
-  type InitialValuesType = {
-    occupation: string,
-    doctorsName: {
-      label: string,
-      value: string
-    } | null,
-    visitReason: string,
-    note: string,
-    date: Date,
-    time: string
-  };
 
   const initialValues:InitialValuesType  = {
     occupation: '',
@@ -94,7 +75,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                   onChange={(value:{ value: string, label: string }) => {
                     setFieldValue('occupation', value);
                     setFieldValue('doctorsName', null);
-                    dispatch(getDoctors(value.value));
+                    dispatch(fetchDoctors(value.value));
                   }}
                 />
                 <ErrorMessage component={ErrorMessageText} name="occupation" />
@@ -107,7 +88,7 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                   value={values.doctorsName}
                   onChange={(value:{ value: string, label: string }) => {
                     setFieldValue('doctorsName', value);
-                    dispatch(getFreeTime({
+                    dispatch(fetchFreeTime({
                       date: transformToISOString(values.date),
                       doctorID: value.value,
                     }));
@@ -115,10 +96,10 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                 />
                 <ErrorMessage component={ErrorMessageText} name="doctorsName" />
                 <StyledH4>{DICTIONARY.newAppointmentLabels.visitReason}</StyledH4>
-                <Field as={AppointmentInput} name="visitReason" placeholder={DICTIONARY.newAppointmentPlaseholders.visitReason} />
+                <Field as={PatientInput} name="visitReason" placeholder={DICTIONARY.newAppointmentPlaseholders.visitReason} />
                 <ErrorMessage component={ErrorMessageText} name="visitReason" />
                 <StyledH4>{DICTIONARY.newAppointmentLabels.note}</StyledH4>
-                <Field as={AppointmentInput} name="note" placeholder={DICTIONARY.newAppointmentPlaseholders.note} />
+                <Field as={PatientInput} name="note" placeholder={DICTIONARY.newAppointmentPlaseholders.note} />
                 <ErrorMessage component={ErrorMessageText} name="note" />
               </AppointmentContainer>
 
@@ -128,7 +109,9 @@ export const AppointmentForm = function ({ onSubmit }:AppointmentFormProps) {
                   name="date"
                   onChange={(value:Date)=>{
                     setFieldValue('date', value);
-                    dispatch(getFreeTime({ date: transformToISOString(value), doctorID: values.doctorsName.value }));
+                    if (values.doctorsName){
+                      dispatch(fetchFreeTime({ date: transformToISOString(value), doctorID: values.doctorsName.value }));
+                    } 
                   }
                   }
                   value={values.date ? new Date(values.date) : new Date()}

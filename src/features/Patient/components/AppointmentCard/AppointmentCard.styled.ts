@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 
 export const StyledAppointmentCard = styled.div`
+    position: relative;
     background-color: white;    
     padding: 24px 32px 40px;
     width: 406px;
     border-radius: 8px;
     margin: 12px 10px 12px 0;
     border-radius: 12px;
+    &::before{
+        position: absolute;
+        content:'';
+        top:95px;
+        left:0;
+        display: block;
+        height: 1px;
+        width:100%;
+        background-color:#DCE0EC;
+    }
     img {
         margin-right: 16px;
     }

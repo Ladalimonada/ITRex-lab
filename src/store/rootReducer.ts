@@ -1,6 +1,6 @@
 import authSlice from '../features/Authorization/redux/authSlice';
 import doctorSlice from '../features/Doctor/redux/doctorSlice';
-import appointmentSlice from '../features/Patient/redux/appointmentSlice';
+import appointmentSlice from '../features/Patient/redux/patientSlice';
 
 export const reducer = {
   auth: authSlice,

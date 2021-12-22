@@ -1,9 +1,6 @@
 import React from 'react';
 import { StyledAppointmentButton } from './AppointmentButton.styled';
-
-export type AppointmentButtonProps = {
-  children: JSX.Element | string,
-};
+import { AppointmentButtonProps } from './AppointmentButton.types';
 
 export function AppointmentButton({
   children,

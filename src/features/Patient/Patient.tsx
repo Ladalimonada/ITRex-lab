@@ -1,34 +1,37 @@
-/* eslint-disable camelcase */
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../shared/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import moment from 'moment';
 import { ButtonsGroup, Wrapper } from '../../components';
 import { StyledTitle, StyledContainer, StyledBox } from './Patient.styled';
 import { AppontmentCard, AppointmentButton } from './components';
 import { DICTIONARY } from '../../shared/dictionary';
-import { fetchAppointments } from './redux/appointmentSlice';
+import { fetchAppointments, fetchResolutions } from './redux/patientSlice';
 import { ROUTES } from '../../shared/constants';
-import { patientAppointments } from './redux/patientSelectors';
+import { patientAppointments, patientResolutions } from './redux/patientSelectors';
+import { DATE_FORMAT } from '../../shared/constants';
+import { Table } from '../../../src/components';
 
-export const Appointments = () => {
+export const PatientsPage = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchAppointments());
+    dispatch(fetchResolutions());
   }, [dispatch]);
 
   const appointments = useAppSelector(patientAppointments);
-
+  const resolutions = useAppSelector(patientResolutions);
   return (
     <Wrapper>
       <ButtonsGroup
         buttons={[
-          { title: DICTIONARY.pageName.appointments },
-          { title: DICTIONARY.pageName.profile },
-          { title: DICTIONARY.pageName.resolutions },
+          { title: DICTIONARY.pageName.appointments, path:ROUTES.APPOINTMENTS },
+          { title: DICTIONARY.pageName.resolutions, path:ROUTES.PATIENT_RESOLUTIONS },
         ]}
       />
+      {location.pathname === ROUTES.APPOINTMENTS ? <>
       <StyledContainer>
         <StyledTitle>{DICTIONARY.pageName.myAppointments}</StyledTitle>
         <div>
@@ -44,7 +47,7 @@ export const Appointments = () => {
           doctor: {
             first_name, last_name, specialization_name, photo,
           },
-          note, visit_date,
+          note, visit_date, id,
         }) => (
           <AppontmentCard
             avatar={photo}
@@ -52,12 +55,17 @@ export const Appointments = () => {
             lastName={last_name}
             doctorsSpecialization={specialization_name}
             description={note}
-            time={moment(visit_date).format('ddd MMM D, YYYY h:mm A')}
-            key={`${visit_date} ${last_name}`}
+            time={moment(visit_date).format(DATE_FORMAT)}
+            key={id}
             dataTestId="appointmentCard"
           />
         )) : null}
       </StyledBox>
+      </> : <>
+      <StyledTitle>{DICTIONARY.pageName.resolutions}</StyledTitle>
+      <Table type='patient' data={resolutions}></Table>
+      </>}
+      
     </Wrapper>
   );
 };

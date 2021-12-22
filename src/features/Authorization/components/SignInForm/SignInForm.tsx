@@ -1,22 +1,11 @@
 import React from 'react';
-import {
-  Field, Formik, Form, ErrorMessage,
-} from 'formik';
+import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageText, Input, Button } from '../../../../components';
 import imgEmail from '../../../../img/email.png';
 import imgLock from '../../../../img/lock.png';
 import { signInValidation } from '../../authValidation';
 import { DICTIONARY } from '../../../../shared/dictionary';
-
-interface FormValues {
-  email: string,
-  password: string,
-}
-
-type SignInFormProps = {
-  onSubmit: ( values:{ email: string,
-    password: string } ) => void
-};
+import { FormValues, SignInFormProps } from './SignInForm.types';
 
 const initialValues: FormValues = {
   email: '',

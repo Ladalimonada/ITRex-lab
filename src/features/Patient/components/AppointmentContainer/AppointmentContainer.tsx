@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  TextContainer, Circle, StyledText, Container,
-} from './AppointmentContainer.styled';
+import { TextContainer, Circle, StyledText, Container } from './AppointmentContainer.styled';
+import { AppointmentContainerProps } from './AppointmentContainer.types';
 
-type AppointmentContainerProps = {
-  index: string,
-  text: string,
-  children: string | React.ReactNode
-};
 
 export function AppointmentContainer({ index, text, children }:AppointmentContainerProps) {
   return (

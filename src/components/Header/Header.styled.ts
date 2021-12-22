@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import indicator from '../../img/indicator.svg';
 
 export const StyledHeader = styled.div`
     width: 100%;
@@ -37,3 +38,16 @@ export const StyledText = styled.p`
       width: 100%;
     }
     `;
+
+export const StyledDiv = styled.div`
+position:relative;
+width:40px;
+height: 40px;
+& ::after{
+  position:absolute;
+  content: url(${indicator}); 
+  top:-3px;
+  right: -3px;
+  color: red;
+}
+`;

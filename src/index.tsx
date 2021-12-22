@@ -4,12 +4,16 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { store } from './store';
+import { CustomToastContainer } from './components';
+import 'react-toastify/dist/ReactToastify.css';
+import './components/ToastContainer/toastContainer.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <App />
+        <CustomToastContainer/>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

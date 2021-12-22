@@ -1,0 +1,17 @@
+.Toastify__toast {
+    width: 457px;
+    min-height: 100px;
+    border-radius: 12px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+  .Toastify__toast-theme--colored.Toastify__toast--success {
+    background-color: #34C197;
+  }
+  
+  .Toastify__toast-theme--colored.Toastify__toast--error {
+    background-color: #FF2567;
+  }

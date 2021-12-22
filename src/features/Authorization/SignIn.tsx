@@ -8,7 +8,7 @@ import {
 import { Title } from '../../components';
 import { DICTIONARY } from '../../shared/dictionary';
 import { ROUTES } from '../../shared/constants';
-import { logInUser, getUserProfile } from './redux/authSlice';
+import { logInUser, fetchUserProfile } from './redux/authSlice';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const SignIn = () => {
       password,
     };
     await dispatch(logInUser(params));
-    await dispatch(getUserProfile());
+    await dispatch(fetchUserProfile());
     const userRole = localStorage.getItem('userRole');
     if (userRole && userRole === 'Patient') {
       navigate('/appointments', { replace: true });

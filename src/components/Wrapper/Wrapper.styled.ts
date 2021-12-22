@@ -16,6 +16,7 @@ height: 90%;
 overflow-y: auto;
 background-color:#F9FAFF;
 padding: 0 48px;
+border-radius: 16px;
 ::-webkit-scrollbar {
         width: 0px;
     }

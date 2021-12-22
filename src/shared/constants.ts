@@ -6,6 +6,11 @@ export const ROUTES = {
   PATIENTS: '/patients',
   APPOINTMENTS: '/appointments',
   CREATE_APPOINTMENT: '/appointments/create',
+  PATIENT_RESOLUTIONS: '/resolutions',
+  DOCTOR_RESOLUTIONS: '/myresolutions',
+  CREATE_RESOLUTION: '/create-resolution/:id',
+  UPDATE_RESOLUTION: '/update-resolution/:id',
+  UPDATE_APPOINTMENT: '/update-appointment/:id',
 };
 
 export const ROLES = ['Doctor', 'Patient', 'Admin'];
@@ -45,3 +50,11 @@ export const AVAILABLE_TIMESLOTS = [
   { label: '8:00 pm', value: '20:00:00.000Z' }];
 
 export const CALENDAR_DAY_FORMAT = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+export const DATE_FORMAT = 'ddd MMM D, YYYY h:mm A';
+
+export const RESOLUTION_STATUSES = {
+  WAITING: 'waiting',
+  CONFIMED: 'confirm',
+  CANCELEF: 'cancel',
+};

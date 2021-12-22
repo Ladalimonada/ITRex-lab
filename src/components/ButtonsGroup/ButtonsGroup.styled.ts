@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { Button } from './ButtonsGroup.types';
 
 export const ButtonsBlock = styled.div`
 display: flex;
@@ -10,7 +11,7 @@ margin-bottom:56px;
 }
 `;
 
-export const StyledGroupButton = styled.button`
+export const StyledGroupButton = styled.button<{ isActive: boolean }>`
     font-weight: normal;
     width: 160px;
     padding: 12px 0;

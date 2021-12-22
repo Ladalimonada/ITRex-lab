@@ -256,6 +256,11 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
+button {
+  border: 0;
+  background-color: inherit;
+}
+
 progress {
   vertical-align: baseline;
 }

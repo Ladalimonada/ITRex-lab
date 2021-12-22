@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import img from '../../img/angle-right-b.png';
-import { ButtonProps } from './Button';
+import { ButtonProps } from './Button.types';
 
 
 export const StyledButton = styled.button<ButtonProps>`

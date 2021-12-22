@@ -2,13 +2,7 @@ import React from 'react';
 import { Wrapper, StyledInput, Button } from './Input.styled';
 import imgEye from '../../img/eye.png';
 import imgEyeSlash from '../../img/eye-slash.png';
-
-export type InputProps = {
-  isVisible?: boolean;
-  img?: string,
-  placeholder: string
-  name: string
-};
+import { InputProps } from './Input.types';
 
 export const Input = ({
   isVisible, img, placeholder, name, ...restProps
@@ -20,7 +14,7 @@ export const Input = ({
 
   return (
     <Wrapper>
-      <StyledInput   
+      <StyledInput
         {...restProps}
         name={name}
         placeholder={placeholder}

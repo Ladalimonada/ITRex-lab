@@ -1,5 +1,3 @@
-export {
-  SignUp, SignIn, ForgotPass, RestorePass,
-} from './Authorization';
-export { Patients } from './Doctor';
-export { Appointments, CreateAppointment } from './Patient';
+export { SignUp, SignIn, ForgotPass, RestorePass } from './Authorization';
+export { DoctorsPage, DoctorModalWindow } from './Doctor';
+export { PatientsPage, CreateAppointment } from './Patient';

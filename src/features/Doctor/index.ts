@@ -1,1 +1,2 @@
-export { Patients } from './Patients';
+export { DoctorsPage } from './Doctor';
+export { DoctorModalWindow } from './DoctorModalWindow';

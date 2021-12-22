@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { authService } from '../../../services/auth.service';
+import { errorNotify } from '../../../components';
+import { DICTIONARY } from '../../../shared/dictionary';
+import { InitialStateTypes } from './uthSlice.types';
 
 export const createUser = createAsyncThunk(
   'auth/createUser',
@@ -25,7 +28,7 @@ export const logInUser = createAsyncThunk(
   },
 );
 
-export const getUserProfile = createAsyncThunk(
+export const fetchUserProfile = createAsyncThunk(
   'auth/profile',
   async () => {
     const response = await authService.profile();
@@ -35,27 +38,13 @@ export const getUserProfile = createAsyncThunk(
     return response.data;
   },
 );
-export interface UserProfileModel {
-  id: string,
-  first_name: string,
-  last_name: string,
-  photo: string,
-  role_name: string
-}
 
-interface InitialStateTypes {
-  token: null | string, 
-  profile: null | UserProfileModel,
-  loading: boolean, 
-  error: null | string
-}
-
-const initialState = {
+const initialState:InitialStateTypes = {
   token: null, 
   profile: null, 
   loading: false, 
   error: null,
-} as InitialStateTypes;
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -71,7 +60,8 @@ const authSlice = createSlice({
     );
     builder.addCase(
       createUser.rejected,
-      (state, action) => ({ ...state, error: action.error.message, loading: false }),
+      (state, action) => ((errorNotify(DICTIONARY.toastMessages.signUpError),
+      { ...state, error: action.error.message, loading: false })),
     );
 
     builder.addCase(logInUser.pending, (state) => ({ ...state, loading: true, error: null }));
@@ -83,18 +73,19 @@ const authSlice = createSlice({
     );
     builder.addCase(
       logInUser.rejected,
-      (state, action) => ({ ...state, error: action.error.message, loading: false }),
+      (state, action) => ((errorNotify(DICTIONARY.toastMessages.logInError),
+      { ...state, error: action.error.message, loading: false })),
     );
 
-    builder.addCase(getUserProfile.pending, (state) => ({ ...state, loading: true, error: null }));
+    builder.addCase(fetchUserProfile.pending, (state) => ({ ...state, loading: true, error: null }));
     builder.addCase(
-      getUserProfile.fulfilled,
+      fetchUserProfile.fulfilled,
       (state, action) => ({
         ...state, profile: action.payload, loading: false, error: null,
       }),
     );
     builder.addCase(
-      getUserProfile.rejected,
+      fetchUserProfile.rejected,
       (state, action) => ({ ...state, error: action.error.message, loading: false }),
     );
   },

@@ -4,7 +4,9 @@
   "private": true,
   "homepage": "https://ladalimonada.github.io/ITRex-lab",
   "dependencies": {
+    "@reach/dialog": "^0.16.2",
     "@reduxjs/toolkit": "^1.6.2",
+    "@szhsin/react-menu": "^2.3.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.24.0",

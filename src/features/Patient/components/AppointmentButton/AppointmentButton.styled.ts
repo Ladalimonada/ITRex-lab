@@ -7,7 +7,7 @@ export const StyledAppointmentButton = styled.button`
   background-color: #7297FF;
   font-size: calc(15px + (17 - 15) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 8px;
-    border: none;
+  border: none;
     &:focus {
   outline: none;
     }

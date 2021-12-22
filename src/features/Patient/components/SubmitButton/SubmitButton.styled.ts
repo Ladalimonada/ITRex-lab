@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { SubmitButtonProps } from './SubmitButton';
+import { SubmitButtonProps } from './SubmitButton.types';
 
 export const StyledButton = styled.button<SubmitButtonProps> `
 width: 160px;
